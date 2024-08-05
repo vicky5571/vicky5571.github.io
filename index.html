@@ -204,6 +204,8 @@
             btnKirim.classList.toggle("d-none");
             // Show alert
             formAlert.classList.toggle("d-none");
+            // Reset form
+            form.reset();
             console.log("Success!", response);
           })
           .catch((error) => console.error("Error!", error.message));
