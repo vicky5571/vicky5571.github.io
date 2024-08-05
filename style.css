@@ -24,3 +24,12 @@
 .hero-section svg {
   margin-bottom: -5px;
 }
+
+/* Gallery */
+.gallery-img {
+  width: 100%;
+}
+
+#gallery .row > * {
+  padding: 0;
+}
