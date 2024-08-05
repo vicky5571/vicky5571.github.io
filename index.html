@@ -47,9 +47,9 @@
 
     <!-- Hero Start -->
     <section class="hero bg-body-tertiary text-center hero-section">
-      <img src="img/pp.png" alt="Foto Vicky" width="200px" class="rounded-circle img-thumbnail" data-aos="zoom-in-down" />
+      <img src="img/pp.png" alt="Foto Vicky" width="200px" class="rounded-circle img-thumbnail" />
       <h1 class="display-4">Vicky Galih</h1>
-      <p class="lead">Data Scientist and Web Developer</p>
+      <p class="lead">|</p>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#212429"
@@ -273,6 +273,15 @@
       AOS.init({
         once: true,
       });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+    <script>
+      gsap.registerPlugin(TextPlugin);
+      gsap.to(".hero .lead", { duration: 2, delay: 1.4, text: "Data Scientist and Web Developer" });
+      gsap.from(".hero img", { duration: 1, y: -100, opacity: 0, ease: "bounce" });
+      gsap.from(".navbar", { duration: 1, y: "-100%", opacity: 0 });
     </script>
 
     <script>
