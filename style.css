@@ -1,0 +1,26 @@
+.hero {
+  padding-top: 5rem;
+}
+
+.text-light-section {
+  color: #f8f9fa;
+}
+
+/* To remove absurd border between sections */
+.contact-section {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-section svg {
+  margin-bottom: -5px;
+}
+
+.hero-section svg {
+  margin-bottom: -5px;
+}
