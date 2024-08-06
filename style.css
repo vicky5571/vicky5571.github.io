@@ -44,7 +44,7 @@
   background-color: #212529;
   border-radius: 10px;
   height: 500px;
-  overflow: hidden;
+  transform-style: preserve-3d;
 }
 
 .project-tilt-box::before {
@@ -55,14 +55,13 @@
   font-weight: bold;
   font-style: italic;
   top: 30px;
-  left: -100px;
+  left: 50%;
+  transform: translate(-50%, 0);
   opacity: 0;
   transition: 0.5s;
 }
 
 .project-tilt-box:hover::before {
-  left: 50%;
-  transform: translate(-50%, 0);
   opacity: 0.2;
 }
 
@@ -74,14 +73,13 @@
   font-weight: bold;
   font-style: italic;
   top: 350px;
-  left: 450px;
+  left: 50%;
+  transform: translate(-50%, 0);
   opacity: 0;
   transition: 0.5s;
 }
 
 .project-tilt-box:hover::after {
-  left: 50%;
-  transform: translate(-50%, 0);
   opacity: 0.2;
 }
 
@@ -93,6 +91,7 @@
   text-align: center;
   font-size: 2em;
   opacity: 0;
+  transform: translate3d(0, 0, 50px);
   transition: 0.5s;
 }
 
@@ -105,7 +104,7 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate3d(-50%, 0, 101px);
   opacity: 0;
   transition: 0.5s;
 }
@@ -119,11 +118,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 100px);
   max-width: 300px;
   transition: 0.5s;
 }
 
 .project-tilt-box:hover .project-img {
-  transform: translate(-50%, -52%) rotate(5deg) scale(1.2);
+  transform: translate3d(-50%, -52%, 100px) rotate(5deg) scale(1.2);
 }
