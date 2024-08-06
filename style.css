@@ -33,3 +33,97 @@
 #gallery .row > * {
   padding: 0;
 }
+
+/* My Visualizations Section*/
+.project-tilt-box {
+  /* 
+    Karena elemen di dalamnya akan diberikan position absolute
+    maka berikan position relative pada box ini 
+  */
+  position: relative;
+  background-color: #212529;
+  border-radius: 10px;
+  height: 500px;
+  overflow: hidden;
+}
+
+.project-tilt-box::before {
+  content: "MY";
+  position: absolute;
+  color: #f8f9fa;
+  font-size: 5em;
+  font-weight: bold;
+  font-style: italic;
+  top: 30px;
+  left: -100px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.project-tilt-box:hover::before {
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0.2;
+}
+
+.project-tilt-box::after {
+  content: "Visualization";
+  position: absolute;
+  color: #f8f9fa;
+  font-size: 3.5em;
+  font-weight: bold;
+  font-style: italic;
+  top: 350px;
+  left: 450px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.project-tilt-box:hover::after {
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0.2;
+}
+
+.project-name {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  color: #f8f9fa;
+  text-align: center;
+  font-size: 2em;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.project-tilt-box:hover .project-name {
+  top: 10px;
+  opacity: 1;
+}
+
+.project-detail-button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.project-tilt-box:hover .project-detail-button {
+  opacity: 1;
+  bottom: 25px;
+}
+
+.project-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 300px;
+  transition: 0.5s;
+}
+
+.project-tilt-box:hover .project-img {
+  transform: translate(-50%, -52%) rotate(5deg) scale(1.2);
+}

@@ -132,6 +132,25 @@
           </div>
         </div>
       </div>
+
+      <section id="my-keyboards">
+        <div class="container">
+          <div class="row text-center mb-3">
+            <div class="col">
+              <h2>Data Visualizations</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-3">
+              <div class="project-tilt-box">
+                <h4 class="project-name text-light">Scatter Plot</h4>
+                <img class="project-img" src="img/visualizations/circular-barplot.png" alt="" />
+                <a href="#" class="btn btn-light project-detail-button">Show Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
     <!-- Projects End -->
 
@@ -308,6 +327,14 @@
             console.log("Success!", response);
           })
           .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+
+    <script type="text/javascript" src="js/vanilla-tilt.min.js"></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelector(".project-tilt-box"), {
+        max: 25,
+        speed: 400,
       });
     </script>
   </body>
