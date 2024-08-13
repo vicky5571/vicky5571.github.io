@@ -25,6 +25,11 @@
   margin-bottom: -5px;
 }
 
+/* Projects */
+.light-grey {
+  background-color: #f1f1f1;
+}
+
 /* Gallery */
 .gallery-img {
   width: 100%;
