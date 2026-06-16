@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;850;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #10100f;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #10100f;
+}
+
+::selection {
+  background: #d5ff3f;
+  color: #10100f;
+}
+
+canvas {
+  touch-action: pan-y;
+}
+
+.hero-poster {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-poster::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(rgba(245, 241, 232, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 241, 232, 0.035) 1px, transparent 1px);
+  background-size: 7.5rem 7.5rem;
+  mask-image: linear-gradient(90deg, transparent, black 42%, black);
+}
+
+.poster-frame {
+  position: absolute;
+  right: clamp(-9rem, -8vw, -3rem);
+  width: min(52vw, 42rem);
+  aspect-ratio: 0.78;
+  border: 1px solid rgba(245, 241, 232, 0.16);
+  transform: rotate(8deg);
+  animation: posterDrift 11s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.poster-frame-one {
+  top: 11%;
+  background:
+    radial-gradient(circle at 62% 20%, rgba(213, 255, 63, 0.95), transparent 12%),
+    radial-gradient(circle at 28% 74%, rgba(54, 215, 255, 0.55), transparent 18%),
+    linear-gradient(135deg, rgba(213, 255, 63, 0.12), rgba(245, 241, 232, 0.04) 38%, rgba(255, 94, 58, 0.42)),
+    #10100f;
+  box-shadow: 0 3rem 8rem rgba(0, 0, 0, 0.45);
+}
+
+.poster-frame-two {
+  top: 22%;
+  right: clamp(4rem, 17vw, 18rem);
+  width: min(29vw, 24rem);
+  border-color: rgba(213, 255, 63, 0.45);
+  background:
+    linear-gradient(100deg, transparent 0 22%, rgba(213, 255, 63, 0.85) 22% 27%, transparent 27% 100%),
+    linear-gradient(160deg, rgba(54, 215, 255, 0.4), rgba(255, 94, 58, 0.46)),
+    #10100f;
+  mix-blend-mode: screen;
+  animation-delay: -4s;
+}
+
+.poster-mark {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(0.2px);
+}
+
+.poster-mark-a {
+  right: 6%;
+  top: 27%;
+  width: clamp(3.5rem, 10vw, 7rem);
+  height: clamp(3.5rem, 10vw, 7rem);
+  background: #d5ff3f;
+  animation: pulseMark 5s ease-in-out infinite;
+}
+
+.poster-mark-b {
+  right: 38%;
+  bottom: 20%;
+  width: clamp(1.6rem, 4vw, 3rem);
+  height: clamp(1.6rem, 4vw, 3rem);
+  background: #36d7ff;
+  opacity: 0.75;
+  animation: pulseMark 6s ease-in-out infinite reverse;
+}
+
+.poster-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(245, 241, 232, 0.45) 0 1px, transparent 1px),
+    radial-gradient(circle at 70% 55%, rgba(245, 241, 232, 0.35) 0 1px, transparent 1px);
+  background-size: 34px 34px, 47px 47px;
+  mask-image: linear-gradient(90deg, transparent, black 48%, black);
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.project-card {
+  transform: translateY(0);
+  transition: transform 450ms ease, box-shadow 450ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 2rem 6rem rgba(16, 16, 15, 0.22);
+}
+
+.project-visual {
+  position: relative;
+  min-height: 15rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(245, 241, 232, 0.12);
+}
+
+.project-visual::before,
+.project-visual::after {
+  position: absolute;
+  content: "";
+  inset: 10%;
+  transition: transform 650ms ease;
+}
+
+.project-card:hover .project-visual::before {
+  transform: rotate(8deg) scale(1.08);
+}
+
+.project-card:hover .project-visual::after {
+  transform: translateX(1.5rem) rotate(-4deg);
+}
+
+.project-visual-acid {
+  background:
+    linear-gradient(90deg, rgba(213, 255, 63, 0.85) 0 18%, transparent 18% 100%),
+    linear-gradient(135deg, rgba(213, 255, 63, 0.3), rgba(54, 215, 255, 0.2)),
+    #10100f;
+}
+
+.project-visual-acid::before {
+  border: 1px solid rgba(245, 241, 232, 0.26);
+  background: repeating-linear-gradient(135deg, rgba(245, 241, 232, 0.2) 0 1px, transparent 1px 12px);
+}
+
+.project-visual-acid::after {
+  top: 23%;
+  left: 35%;
+  width: 45%;
+  height: 45%;
+  border-radius: 999px;
+  background: #d5ff3f;
+  mix-blend-mode: screen;
+}
+
+.project-visual-cyan {
+  background:
+    radial-gradient(circle at 28% 36%, rgba(54, 215, 255, 0.85), transparent 22%),
+    linear-gradient(120deg, rgba(245, 241, 232, 0.08), rgba(122, 92, 255, 0.42)),
+    #10100f;
+}
+
+.project-visual-cyan::before {
+  border: 1px solid rgba(54, 215, 255, 0.5);
+  transform: skewX(-10deg);
+}
+
+.project-visual-cyan::after {
+  background: linear-gradient(90deg, transparent 0 40%, rgba(54, 215, 255, 0.7) 40% 48%, transparent 48% 100%);
+}
+
+.project-visual-flame {
+  background:
+    radial-gradient(circle at 70% 34%, rgba(255, 94, 58, 0.8), transparent 24%),
+    linear-gradient(150deg, rgba(255, 94, 58, 0.12), rgba(213, 255, 63, 0.34)),
+    #10100f;
+}
+
+.project-visual-flame::before {
+  background: conic-gradient(from 180deg, #ff5e3a, transparent, #d5ff3f, transparent, #ff5e3a);
+  filter: blur(18px);
+  opacity: 0.72;
+}
+
+.project-visual-flame::after {
+  border: 1px solid rgba(245, 241, 232, 0.24);
+  transform: rotate(18deg);
+}
+
+.project-index {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 1;
+  color: rgba(245, 241, 232, 0.84);
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 900;
+  line-height: 0.8;
+}
+
+@keyframes posterDrift {
+  from {
+    transform: translate3d(0, 0, 0) rotate(8deg);
+  }
+  to {
+    transform: translate3d(-1rem, 0.9rem, 0) rotate(4deg);
+  }
+}
+
+@keyframes pulseMark {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.78;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .poster-frame {
+    right: -10rem;
+    top: 8rem;
+    width: 25rem;
+    opacity: 0.85;
+  }
+
+  .poster-frame-two {
+    right: 5rem;
+    top: 13rem;
+    width: 13rem;
+  }
+
+  .poster-mark-a {
+    right: 1rem;
+    top: 12rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
