@@ -6,38 +6,57 @@ import {
   MousePointer2,
   Play,
   Sparkles,
-  Zap
+  Zap,
+  MessageCircleMore
 } from "lucide-react";
 
 const projects = [
   {
-    name: "Quiet Voltage",
-    type: "Brand System",
-    year: "2026",
+    name: "Redefined Gaming",
+    type: "Front End",
+    year: "",
     tone: "acid",
-    copy: "Identity, launch page, dan motion language untuk studio teknologi iklim."
+    image: "dist/assets/img/redefined-gaming.png",
+    link: "https://vt.tiktok.com/ZSQgSXXPg/",
+    copy: ""
   },
   {
-    name: "Northline",
-    type: "Commerce",
-    year: "2026",
+    name: "Tomato - Online Food Ordering",
+    type: "UI/UX",
+    year: "",
     tone: "cyan",
-    copy: "Editorial e-commerce dengan ritme katalog, art cards, dan fast checkout story."
+    image: "dist/assets/img/tomato.png",
+    link: "https://www.figma.com/design/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=0-1&t=gE2WA9YVxasitwte-1",
+    copy: ""
   },
   {
-    name: "After Hours",
-    type: "Culture",
-    year: "2025",
+    name: "NIKE - Shoes Store Landing Page",
+    type: "UI/UX",
+    year: "",
+    tone: "acid",
+    image: "dist/assets/img/nike.png",
+    link: "https://www.figma.com/proto/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=1170-56&t=DOxDIfp3AD9HAmod-1",
+    copy: ""
+  },
+  {
+    name: "Library Photo Session",
+    type: "Photography",
+    year: "",
     tone: "flame",
-    copy: "Microsite festival dengan poster system, schedule, dan visual direction."
+    image: "dist/assets/img/photo-session.png",
+    link: "https://www.instagram.com/kkn.hargomulyo2025?igsh=MXI0Mm56NWpla3ozaA==",
+    copy: ""
   }
 ];
 
 const methods = [
-  ["01", "Visual hook dulu", "First viewport dibuat seperti poster kampanye: cepat terbaca, punya mood, dan kuat untuk screenshot."],
-  ["02", "Motion hemat", "Interaksi memakai CSS transform, hover, dan marquee ringan. Tidak ada WebGL, tidak ada canvas berat."],
-  ["03", "Konten tetap jualan", "CTA, proof, dan penawaran tetap jelas meski tampilannya eksperimental."],
-  ["04", "Mobile sebagai panggung", "Layout tidak hanya mengecil di mobile, tapi disusun ulang supaya tetap terasa mahal."]
+  ["Jul 2025 - Nov 2025", "Wedding photographer", ""],
+  ["November 2025", "disney magical runway solo paragon", ""],
+  ["May 2025 - Jul 2025", "event photographer", ""],
+  ["Jan 2025", "php web developer", ""],
+  ["Jul 2024 - Nov 2024", "front end developer", ""],
+  ["Aug 2023 - Feb 2024", "data scientist", ""],
+  ["Apr 2022 - Sep 2022", "data analyst", ""]
 ];
 
 function Header() {
@@ -46,15 +65,15 @@ function Header() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#top" className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-milk">
           <span className="h-2.5 w-2.5 rounded-full bg-acid shadow-glow" />
-          Vanta
+          VICKY
         </a>
         <div className="hidden items-center gap-7 text-sm text-milk/72 md:flex">
           <a href="#work" className="transition hover:text-acid">Work</a>
-          <a href="#method" className="transition hover:text-acid">Method</a>
+          <a href="#method" className="transition hover:text-acid">Experience</a>
           <a href="#contact" className="transition hover:text-acid">Contact</a>
         </div>
         <a href="#contact" className="hidden items-center gap-2 rounded-full border border-milk/20 px-4 py-2 text-sm text-milk transition hover:border-acid hover:text-acid md:flex">
-          Start project <ArrowUpRight size={16} />
+          Let's Connect <ArrowUpRight size={16} />
         </a>
         <button className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-milk md:hidden" aria-label="Open menu">
           <Menu size={18} />
@@ -85,18 +104,18 @@ function Hero() {
         <div className="max-w-5xl">
           <div className="mb-5 inline-flex items-center gap-2 border border-milk/15 bg-milk/5 px-3 py-2 text-xs uppercase tracking-[0.24em] text-milk/75 backdrop-blur">
             <Sparkles size={14} className="text-acid" />
-            Awwwards-inspired, zero WebGL
+            UI/UX Designer and Web Developer
           </div>
           <h1 className="max-w-6xl text-balance text-[clamp(3.2rem,12vw,9.7rem)] font-black uppercase leading-[0.79] tracking-normal">
-            Sharp sites for strange brands.
+            Designing digital experiences.
           </h1>
           <div className="mt-6 grid gap-5 md:grid-cols-[0.9fr_1fr] md:items-end">
             <p className="max-w-xl text-lg leading-8 text-milk/76 md:text-xl">
-              Landing page cepat, dramatis, dan terasa kurasi studio kreatif: poster-led layout, motion ringan, dan struktur konversi yang tetap jelas.
+              I'm Vicky Galih Pamungkas, a UI/UX Designer and Web Developer passionate about creating user-centered digital products through research, prototyping, and modern web technologies.
             </p>
             <div className="flex flex-wrap gap-3 md:justify-end">
-              <a href="#contact" className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-milk">
-                Book a sprint <ArrowUpRight size={17} />
+              <a href="https://drive.google.com/file/d/1d7PqTH9ZvvkSRnOZtJtLsHRiBDkpxLSy/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-milk">
+                curriculum vitae <ArrowUpRight size={17} />
               </a>
               <a href="#work" className="inline-flex items-center gap-2 border border-milk/20 px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-milk transition hover:border-cyan hover:text-cyan">
                 View work <Play size={16} />
@@ -105,7 +124,7 @@ function Hero() {
           </div>
         </div>
         <div className="mt-10 grid border-y border-white/10 text-sm text-milk/65 sm:grid-cols-3">
-          {["Brand systems", "Landing pages", "Launch campaigns"].map((item) => (
+          {["Brand systems", "Landing pages", "Campaigns"].map((item) => (
             <div key={item} className="flex items-center gap-3 border-white/10 py-4 sm:border-r sm:px-5 last:sm:border-r-0">
               <CircleDot size={15} className="text-acid" />
               {item}
@@ -123,11 +142,13 @@ function Marquee() {
       <div className="marquee-track flex w-max items-center gap-8 text-xl font-black uppercase tracking-[0.18em] sm:text-2xl">
         {Array.from({ length: 8 }).map((_, index) => (
           <React.Fragment key={index}>
-            <span>Fast load</span>
+            <span>UI/UX Design</span>
             <Zap size={22} />
-            <span>Editorial motion</span>
+            <span>Full Stack Creative Design</span>
             <Zap size={22} />
-            <span>No 3D</span>
+            {/* <span>Photography</span>
+            <Zap size={22} /> */}
+            <span>Web Development</span>
             <Zap size={22} />
           </React.Fragment>
         ))}
@@ -145,27 +166,47 @@ function Work() {
             Work that feels like a magazine cover.
           </h2>
           <p className="max-w-2xl text-lg leading-8 text-ink/68">
-            Referensinya dari website Awwwards yang kuat secara art direction: bukan berat karena teknologi, tapi berkesan karena komposisi, timing, dan detail.
+            A collection of design and development projects focused on solving real user problems through research, thoughtful design, and implementation.
           </p>
         </div>
         <div className="mt-14 grid gap-4 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <article key={project.name} className="project-card group min-h-[430px] overflow-hidden border border-ink/15 bg-ink text-milk">
-              <div className={`project-visual project-visual-${project.tone}`}>
-                <span className="project-index">0{index + 1}</span>
-              </div>
-              <div className="space-y-5 p-6">
-                <div className="flex items-center justify-between text-xs uppercase tracking-[0.24em] text-milk/55">
-                  <span>{project.type}</span>
-                  <span>{project.year}</span>
+            <a
+              key={project.name}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <article key={project.name} className="project-card group min-h-[430px] overflow-hidden border border-ink/15 bg-ink text-milk">
+                {/* <div className={`project-visual project-visual-${project.tone}`}>
+                  <span className="project-index">0{index + 1}</span>
+                </div> */}
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <span 
+                    className="absolute left-4 top-4 project-index drop-shadow-[0_6px_12px_rgba(0,0,0,0.8)]"
+                  >
+                    0{index + 1}
+                  </span>
                 </div>
-                <h3 className="text-4xl font-black uppercase leading-none">{project.name}</h3>
-                <p className="leading-7 text-milk/66">{project.copy}</p>
-                <a href="#contact" className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-acid">
-                  Explore <ArrowUpRight size={16} className="transition group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </a>
-              </div>
-            </article>
+                <div className="space-y-5 p-6">
+                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.24em] text-milk/55">
+                    <span>{project.type}</span>
+                    <span>{project.year}</span>
+                  </div>
+                  <h3 className="text-4xl font-black uppercase leading-none">{project.name}</h3>
+                  <p className="leading-7 text-milk/66">{project.copy}</p>
+                  <a href="#contact" className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-acid">
+                    Explore <ArrowUpRight size={16} className="transition group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </a>
+                </div>
+              </article>
+            </a>
           ))}
         </div>
       </div>
@@ -178,9 +219,9 @@ function Method() {
     <section id="method" className="bg-ink py-20 text-milk sm:py-28">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <div className="lg:sticky lg:top-28 lg:h-fit">
-          <p className="mb-5 text-sm font-bold uppercase tracking-[0.28em] text-acid">Method</p>
+          <p className="mb-5 text-sm font-bold uppercase tracking-[0.28em] text-acid">Experience</p>
           <h2 className="text-[clamp(2.2rem,6vw,5.6rem)] font-black uppercase leading-[0.88] tracking-normal">
-            Light code, heavy presence.
+            Light work, heavy presence.
           </h2>
         </div>
         <div className="grid gap-3">
@@ -204,14 +245,14 @@ function Contact() {
     <section id="contact" className="bg-flame py-16 text-ink sm:py-20">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-8">
         <h2 className="text-[clamp(2.6rem,8vw,7rem)] font-black uppercase leading-[0.84] tracking-normal">
-          Make it fast. Make it memorable.
+          Make it memorable.
         </h2>
         <div className="space-y-6">
           <p className="text-lg leading-8 text-ink/72">
-            Cocok untuk brand, produk, portfolio, event, dan campaign page yang ingin terlihat premium tanpa beban 3D.
+            Elevate your digital presence with modern UI/UX design and front-end development that transforms ideas into engaging, memorable experiences.
           </p>
-          <a href="mailto:hello@vanta.test" className="inline-flex items-center gap-3 bg-ink px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-milk transition hover:bg-milk hover:text-ink">
-            hello@vanta.test <MousePointer2 size={17} />
+          <a href="https://wa.me/6283144995745" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-ink px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-milk transition hover:bg-milk hover:text-ink">
+            contact me <MessageCircleMore size={17} />
           </a>
         </div>
       </div>
