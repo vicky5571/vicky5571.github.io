@@ -16,7 +16,7 @@ const projects = [
     type: "Front End",
     year: "",
     tone: "acid",
-    image: "dist/assets/img/redefined-gaming.png",
+    image: "/img/redefined-gaming.png",
     link: "https://vt.tiktok.com/ZSQgSXXPg/",
     copy: ""
   },
@@ -25,7 +25,7 @@ const projects = [
     type: "UI/UX",
     year: "",
     tone: "cyan",
-    image: "dist/assets/img/tomato.png",
+    image: "/img/tomato.png",
     link: "https://www.figma.com/design/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=0-1&t=gE2WA9YVxasitwte-1",
     copy: ""
   },
@@ -34,7 +34,7 @@ const projects = [
     type: "UI/UX",
     year: "",
     tone: "acid",
-    image: "dist/assets/img/nike.png",
+    image: "/img/nike.png",
     link: "https://www.figma.com/proto/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=1170-56&t=DOxDIfp3AD9HAmod-1",
     copy: ""
   },
@@ -43,7 +43,7 @@ const projects = [
     type: "Photography",
     year: "",
     tone: "flame",
-    image: "dist/assets/img/photo-session.png",
+    image: "/img/photo-session.png",
     link: "https://www.instagram.com/kkn.hargomulyo2025?igsh=MXI0Mm56NWpla3ozaA==",
     copy: ""
   }
