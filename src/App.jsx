@@ -213,7 +213,7 @@ function Marquee() {
 function Work() {
   return (
     <section id="work" className="bg-milk py-20 text-ink sm:py-28">
-      <div className="mx-auto max-w-7xl px-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <h2 className="text-[clamp(2.4rem,7vw,6.5rem)] font-black uppercase leading-[0.86] tracking-normal">
             Work that feels like a magazine cover.
@@ -229,9 +229,9 @@ function Work() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="block"
+              className="block min-w-0"
             >
-              <article key={project.name} className="project-card group min-h-[430px] overflow-hidden border border-ink/15 bg-ink text-milk">
+              <article key={project.name} className="project-card group min-h-[430px] min-w-0 overflow-hidden border border-ink/15 bg-ink text-milk">
                 {/* <div className={`project-visual project-visual-${project.tone}`}>
                   <span className="project-index">0{index + 1}</span>
                 </div> */}
@@ -262,9 +262,9 @@ function Work() {
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-4xl font-black uppercase leading-none">{project.name}</h3>
+                  <h3 className="break-words text-3xl font-black uppercase leading-none sm:text-4xl">{project.name}</h3>
                   <p className="leading-7 text-milk/66">{project.copy}</p>
-                  <a href="#contact" className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-acid">
+                  <a href={project.link} className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-acid">
                     Explore <ArrowUpRight size={16} className="transition group-hover:translate-x-1 group-hover:-translate-y-1" />
                   </a>
                 </div>
