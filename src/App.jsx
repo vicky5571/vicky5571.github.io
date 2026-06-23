@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ArrowUpRight,
   CircleDot,
@@ -6,11 +6,22 @@ import {
   MousePointer2,
   Play,
   Sparkles,
+  X,
   Zap,
   MessageCircleMore
 } from "lucide-react";
 
 const projects = [
+  {
+    name: "StealthForce E-commerce",
+    type: "Front End",
+    year: "",
+    tone: "acid",
+    image: "/img/stealthforce.png",
+    link: "https://ecommerce-sanity-build-bewn7zdp2-vicky-galih-pamungas-projects.vercel.app/",
+    stack: ["Next.js","React", "Typescript", "Sanity", "Stripe", "Clerk"],
+    copy: ""
+  },
   {
     name: "Redefined Gaming",
     type: "Front End",
@@ -18,6 +29,7 @@ const projects = [
     tone: "acid",
     image: "/img/redefined-gaming.png",
     link: "https://vt.tiktok.com/ZSQgSXXPg/",
+    stack: ["React", "Motion"],
     copy: ""
   },
   {
@@ -27,15 +39,17 @@ const projects = [
     tone: "cyan",
     image: "/img/tomato.png",
     link: "https://www.figma.com/design/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=0-1&t=gE2WA9YVxasitwte-1",
+    stack: ["Figma", "Prototype", "Research"],
     copy: ""
   },
   {
-    name: "NIKE - Shoes Store Landing Page",
+    name: "NIKE - Shoes Store",
     type: "UI/UX",
     year: "",
     tone: "acid",
     image: "/img/nike.png",
     link: "https://www.figma.com/proto/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=1170-56&t=DOxDIfp3AD9HAmod-1",
+    stack: ["Figma", "Landing Page", "UI Design"],
     copy: ""
   },
   {
@@ -45,6 +59,7 @@ const projects = [
     tone: "flame",
     image: "/img/photo-session.png",
     link: "https://www.instagram.com/kkn.hargomulyo2025?igsh=MXI0Mm56NWpla3ozaA==",
+    stack: ["Photography", "Lightroom", "Direction"],
     copy: ""
   }
 ];
@@ -60,6 +75,13 @@ const methods = [
 ];
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navLinks = [
+    ["Work", "#work"],
+    ["Experience", "#method"],
+    ["Contact", "#contact"]
+  ];
+
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur-xl">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -68,17 +90,48 @@ function Header() {
           VICKY
         </a>
         <div className="hidden items-center gap-7 text-sm text-milk/72 md:flex">
-          <a href="#work" className="transition hover:text-acid">Work</a>
-          <a href="#method" className="transition hover:text-acid">Experience</a>
-          <a href="#contact" className="transition hover:text-acid">Contact</a>
+          {navLinks.map(([label, href]) => (
+            <a key={href} href={href} className="transition hover:text-acid">{label}</a>
+          ))}
         </div>
         <a href="#contact" className="hidden items-center gap-2 rounded-full border border-milk/20 px-4 py-2 text-sm text-milk transition hover:border-acid hover:text-acid md:flex">
           Let's Connect <ArrowUpRight size={16} />
         </a>
-        <button className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-milk md:hidden" aria-label="Open menu">
-          <Menu size={18} />
+        <button
+          className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-milk transition hover:border-acid hover:text-acid md:hidden"
+          type="button"
+          aria-controls="mobile-menu"
+          aria-expanded={isMenuOpen}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
       </nav>
+      <div
+        id="mobile-menu"
+        className={`${isMenuOpen ? "max-h-80 translate-y-0 opacity-100" : "pointer-events-none max-h-0 -translate-y-2 opacity-0"} overflow-hidden border-t border-white/10 px-4 shadow-2xl transition-all duration-300 ease-out md:hidden`}
+      >
+        <div className="mx-auto grid max-w-7xl gap-2 py-4">
+          {navLinks.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              className="border border-white/10 px-4 py-3 text-sm font-bold uppercase tracking-[0.18em] text-milk/80 transition hover:border-acid hover:text-acid"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            className="mt-1 inline-flex items-center justify-center gap-2 bg-acid px-4 py-3 text-sm font-black uppercase tracking-[0.16em] text-ink transition hover:bg-milk"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Let's Connect <ArrowUpRight size={16} />
+          </a>
+        </div>
+      </div>
     </header>
   );
 }
@@ -110,7 +163,7 @@ function Hero() {
             Designing digital experiences.
           </h1>
           <div className="mt-6 grid gap-5 md:grid-cols-[0.9fr_1fr] md:items-end">
-            <p className="max-w-xl text-lg leading-8 text-milk/76 md:text-xl">
+            <p className="max-w-xl text-base leading-7 text-milk/76 md:text-xl md:leading-8">
               I'm Vicky Galih Pamungkas, a UI/UX Designer and Web Developer passionate about creating user-centered digital products through research, prototyping, and modern web technologies.
             </p>
             <div className="flex flex-wrap gap-3 md:justify-end">
@@ -198,6 +251,16 @@ function Work() {
                   <div className="flex items-center justify-between text-xs uppercase tracking-[0.24em] text-milk/55">
                     <span>{project.type}</span>
                     <span>{project.year}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((item) => (
+                      <span
+                        key={item}
+                        className="border border-milk/15 bg-milk/[0.06] px-3 py-1.5 text-[0.68rem] font-bold uppercase leading-none tracking-[0.16em] text-milk/72 transition group-hover:border-acid/45 group-hover:text-acid"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
                   <h3 className="text-4xl font-black uppercase leading-none">{project.name}</h3>
                   <p className="leading-7 text-milk/66">{project.copy}</p>
