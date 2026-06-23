@@ -159,7 +159,7 @@ function Hero() {
             <Sparkles size={14} className="text-acid" />
             UI/UX Designer and Web Developer
           </div>
-          <h1 className="max-w-6xl text-balance text-[clamp(3.2rem,12vw,9.7rem)] font-black uppercase leading-[0.79] tracking-normal">
+          <h1 className="max-w-6xl text-balance text-[clamp(2.75rem,11vw,9.7rem)] font-black uppercase leading-[0.82] tracking-normal sm:text-[clamp(3.2rem,12vw,9.7rem)] sm:leading-[0.79]">
             Designing digital experiences.
           </h1>
           <div className="mt-6 grid gap-5 md:grid-cols-[0.9fr_1fr] md:items-end">
@@ -213,7 +213,7 @@ function Marquee() {
 function Work() {
   return (
     <section id="work" className="bg-milk py-20 text-ink sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <h2 className="text-[clamp(2.4rem,7vw,6.5rem)] font-black uppercase leading-[0.86] tracking-normal">
             Work that feels like a magazine cover.
