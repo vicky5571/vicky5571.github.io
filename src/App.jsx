@@ -167,7 +167,7 @@ function Hero() {
               I'm Vicky Galih Pamungkas, a UI/UX Designer and Web Developer passionate about creating user-centered digital products through research, prototyping, and modern web technologies.
             </p>
             <div className="flex flex-wrap gap-3 md:justify-end">
-              <a href="https://drive.google.com/file/d/1d7PqTH9ZvvkSRnOZtJtLsHRiBDkpxLSy/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-milk">
+              <a href="https://drive.google.com/file/d/1M8Tze7CDaDFWaORncTuWwVnmo6Exxxtk/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-milk">
                 curriculum vitae <ArrowUpRight size={17} />
               </a>
               <a href="#work" className="inline-flex items-center gap-2 border border-milk/20 px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-milk transition hover:border-cyan hover:text-cyan">
