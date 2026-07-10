@@ -28,8 +28,18 @@ const projects = [
     year: "",
     tone: "acid",
     image: "/img/redefined-gaming.png",
-    link: "https://vt.tiktok.com/ZSQgSXXPg/",
+    link: "https://redefined-gaming.vercel.app/",
     stack: ["React", "Motion"],
+    copy: ""
+  },
+  {
+    name: "Dyno Graphy",
+    type: "Front End",
+    year: "",
+    tone: "acid",
+    image: "/img/dyno-graphy.png",
+    link: "https://portfolio-dynography.vercel.app/",
+    stack: ["Tailwind", "PostCSS"],
     copy: ""
   },
   {
