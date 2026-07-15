@@ -19,7 +19,7 @@ const projects = [
     tone: "acid",
     image: "/img/stealthforce.png",
     link: "https://ecommerce-sanity-build-bewn7zdp2-vicky-galih-pamungas-projects.vercel.app/",
-    stack: ["Next.js","React", "Typescript", "Sanity", "Stripe", "Clerk"],
+    stack: ["Next.js","React", "Typescript", "Sanity", "Stripe", "Clerk", "Zustand"],
     copy: ""
   },
   {
