@@ -57,7 +57,7 @@ const projects = [
     tone: "acid",
     image: "/img/seo-project-tracker.png",
     link: "https://nextjs-seo-project-tracker.vercel.app/",
-    stack: ["Next.js", "Typescript", "Supabase"],
+    stack: ["Next.js", "Supabase", "Typescript"],
     copy: "",
   },
   {
