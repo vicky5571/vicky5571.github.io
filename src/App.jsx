@@ -8,19 +8,27 @@ import {
   Sparkles,
   X,
   Zap,
-  MessageCircleMore
+  MessageCircleMore,
 } from "lucide-react";
 
 const projects = [
   {
     name: "StealthForce E-commerce",
-    type: "Front End",
+    type: "Full Stack",
     year: "",
     tone: "acid",
     image: "/img/stealthforce.png",
     link: "https://ecommerce-sanity-build-bewn7zdp2-vicky-galih-pamungas-projects.vercel.app/",
-    stack: ["Next.js","React", "Typescript", "Sanity", "Stripe", "Clerk", "Zustand"],
-    copy: ""
+    stack: [
+      "Next.js",
+      "React",
+      "Typescript",
+      "Sanity",
+      "Stripe",
+      "Clerk",
+      "Zustand",
+    ],
+    copy: "",
   },
   {
     name: "Redefined Gaming",
@@ -30,7 +38,7 @@ const projects = [
     image: "/img/redefined-gaming.png",
     link: "https://redefined-gaming.vercel.app/",
     stack: ["React", "Motion"],
-    copy: ""
+    copy: "",
   },
   {
     name: "Dyno Graphy",
@@ -40,7 +48,17 @@ const projects = [
     image: "/img/dyno-graphy.png",
     link: "https://portfolio-dynography.vercel.app/",
     stack: ["Tailwind", "PostCSS"],
-    copy: ""
+    copy: "",
+  },
+  {
+    name: "SEO Project Tracker",
+    type: "Full Stack",
+    year: "",
+    tone: "acid",
+    image: "/img/seo-project-tracker.png",
+    link: "https://nextjs-seo-project-tracker.vercel.app/",
+    stack: ["Next.js", "Typescript", "Supabase"],
+    copy: "",
   },
   {
     name: "Tomato - Online Food Ordering",
@@ -50,7 +68,7 @@ const projects = [
     image: "/img/tomato.png",
     link: "https://www.figma.com/design/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=0-1&t=gE2WA9YVxasitwte-1",
     stack: ["Figma", "Prototype", "Research"],
-    copy: ""
+    copy: "",
   },
   {
     name: "NIKE - Shoes Store",
@@ -60,7 +78,7 @@ const projects = [
     image: "/img/nike.png",
     link: "https://www.figma.com/proto/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=1170-56&t=DOxDIfp3AD9HAmod-1",
     stack: ["Figma", "Landing Page", "UI Design"],
-    copy: ""
+    copy: "",
   },
   {
     name: "Library Photo Session",
@@ -70,8 +88,8 @@ const projects = [
     image: "/img/photo-session.png",
     link: "https://www.instagram.com/kkn.hargomulyo2025?igsh=MXI0Mm56NWpla3ozaA==",
     stack: ["Photography", "Lightroom", "Direction"],
-    copy: ""
-  }
+    copy: "",
+  },
 ];
 
 const methods = [
@@ -81,7 +99,7 @@ const methods = [
   ["Jan 2025", "php web developer", ""],
   ["Jul 2024 - Nov 2024", "front end developer", ""],
   ["Aug 2023 - Feb 2024", "data scientist", ""],
-  ["Apr 2022 - Sep 2022", "data analyst", ""]
+  ["Apr 2022 - Sep 2022", "data analyst", ""],
 ];
 
 function Header() {
@@ -89,22 +107,30 @@ function Header() {
   const navLinks = [
     ["Work", "#work"],
     ["Experience", "#method"],
-    ["Contact", "#contact"]
+    ["Contact", "#contact"],
   ];
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur-xl">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#top" className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-milk">
+        <a
+          href="#top"
+          className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-milk"
+        >
           <span className="h-2.5 w-2.5 rounded-full bg-acid shadow-glow" />
           VICKY
         </a>
         <div className="hidden items-center gap-7 text-sm text-milk/72 md:flex">
           {navLinks.map(([label, href]) => (
-            <a key={href} href={href} className="transition hover:text-acid">{label}</a>
+            <a key={href} href={href} className="transition hover:text-acid">
+              {label}
+            </a>
           ))}
         </div>
-        <a href="#contact" className="hidden items-center gap-2 rounded-full border border-milk/20 px-4 py-2 text-sm text-milk transition hover:border-acid hover:text-acid md:flex">
+        <a
+          href="#contact"
+          className="hidden items-center gap-2 rounded-full border border-milk/20 px-4 py-2 text-sm text-milk transition hover:border-acid hover:text-acid md:flex"
+        >
           Let's Connect <ArrowUpRight size={16} />
         </a>
         <button
@@ -160,7 +186,10 @@ function HeroPoster() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-[100svh] overflow-hidden bg-ink text-milk">
+    <section
+      id="top"
+      className="relative min-h-[100svh] overflow-hidden bg-ink text-milk"
+    >
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,16,15,0.98)_0%,rgba(16,16,15,0.86)_45%,rgba(16,16,15,0.36)_100%)]" />
       <HeroPoster />
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-4 pb-7 pt-28 sm:px-6 lg:px-8 lg:pb-10">
@@ -174,13 +203,23 @@ function Hero() {
           </h1>
           <div className="mt-6 grid gap-5 md:grid-cols-[0.9fr_1fr] md:items-end">
             <p className="max-w-xl text-base leading-7 text-milk/76 md:text-xl md:leading-8">
-              I'm Vicky Galih Pamungkas, a UI/UX Designer and Web Developer passionate about creating user-centered digital products through research, prototyping, and modern web technologies.
+              I'm Vicky Galih Pamungkas, a UI/UX Designer and Web Developer
+              passionate about creating user-centered digital products through
+              research, prototyping, and modern web technologies.
             </p>
             <div className="flex flex-wrap gap-3 md:justify-end">
-              <a href="https://drive.google.com/file/d/1M8Tze7CDaDFWaORncTuWwVnmo6Exxxtk/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-milk">
+              <a
+                href="https://drive.google.com/file/d/1M8Tze7CDaDFWaORncTuWwVnmo6Exxxtk/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-milk"
+              >
                 curriculum vitae <ArrowUpRight size={17} />
               </a>
-              <a href="#work" className="inline-flex items-center gap-2 border border-milk/20 px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-milk transition hover:border-cyan hover:text-cyan">
+              <a
+                href="#work"
+                className="inline-flex items-center gap-2 border border-milk/20 px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-milk transition hover:border-cyan hover:text-cyan"
+              >
                 View work <Play size={16} />
               </a>
             </div>
@@ -188,7 +227,10 @@ function Hero() {
         </div>
         <div className="mt-10 grid border-y border-white/10 text-sm text-milk/65 sm:grid-cols-3">
           {["Brand systems", "Landing pages", "Campaigns"].map((item) => (
-            <div key={item} className="flex items-center gap-3 border-white/10 py-4 sm:border-r sm:px-5 last:sm:border-r-0">
+            <div
+              key={item}
+              className="flex items-center gap-3 border-white/10 py-4 sm:border-r sm:px-5 last:sm:border-r-0"
+            >
               <CircleDot size={15} className="text-acid" />
               {item}
             </div>
@@ -229,7 +271,9 @@ function Work() {
             Work that feels like a magazine cover.
           </h2>
           <p className="max-w-2xl text-lg leading-8 text-ink/68">
-            A collection of design and development projects focused on solving real user problems through research, thoughtful design, and implementation.
+            A collection of design and development projects focused on solving
+            real user problems through research, thoughtful design, and
+            implementation.
           </p>
         </div>
         <div className="mt-14 grid gap-4 lg:grid-cols-3">
@@ -241,7 +285,10 @@ function Work() {
               rel="noopener noreferrer"
               className="block min-w-0"
             >
-              <article key={project.name} className="project-card group min-h-[430px] min-w-0 overflow-hidden border border-ink/15 bg-ink text-milk">
+              <article
+                key={project.name}
+                className="project-card group min-h-[430px] min-w-0 overflow-hidden border border-ink/15 bg-ink text-milk"
+              >
                 {/* <div className={`project-visual project-visual-${project.tone}`}>
                   <span className="project-index">0{index + 1}</span>
                 </div> */}
@@ -251,9 +298,7 @@ function Work() {
                     alt={project.name}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
-                  <span 
-                    className="absolute left-4 top-4 project-index drop-shadow-[0_6px_12px_rgba(0,0,0,0.8)]"
-                  >
+                  <span className="absolute left-4 top-4 project-index drop-shadow-[0_6px_12px_rgba(0,0,0,0.8)]">
                     0{index + 1}
                   </span>
                 </div>
@@ -272,10 +317,19 @@ function Work() {
                       </span>
                     ))}
                   </div>
-                  <h3 className="break-words text-3xl font-black uppercase leading-none sm:text-4xl">{project.name}</h3>
+                  <h3 className="break-words text-3xl font-black uppercase leading-none sm:text-4xl">
+                    {project.name}
+                  </h3>
                   <p className="leading-7 text-milk/66">{project.copy}</p>
-                  <a href={project.link} className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-acid">
-                    Explore <ArrowUpRight size={16} className="transition group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <a
+                    href={project.link}
+                    className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-acid"
+                  >
+                    Explore{" "}
+                    <ArrowUpRight
+                      size={16}
+                      className="transition group-hover:translate-x-1 group-hover:-translate-y-1"
+                    />
                   </a>
                 </div>
               </article>
@@ -292,17 +346,24 @@ function Method() {
     <section id="method" className="bg-ink py-20 text-milk sm:py-28">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <div className="lg:sticky lg:top-28 lg:h-fit">
-          <p className="mb-5 text-sm font-bold uppercase tracking-[0.28em] text-acid">Experience</p>
+          <p className="mb-5 text-sm font-bold uppercase tracking-[0.28em] text-acid">
+            Experience
+          </p>
           <h2 className="text-[clamp(2.2rem,6vw,5.6rem)] font-black uppercase leading-[0.88] tracking-normal">
             Light work, heavy presence.
           </h2>
         </div>
         <div className="grid gap-3">
           {methods.map(([number, title, text]) => (
-            <article key={title} className="grid gap-6 border border-white/12 bg-white/[0.035] p-5 transition hover:border-acid/50 hover:bg-white/[0.055] sm:grid-cols-[90px_1fr] sm:p-7">
+            <article
+              key={title}
+              className="grid gap-6 border border-white/12 bg-white/[0.035] p-5 transition hover:border-acid/50 hover:bg-white/[0.055] sm:grid-cols-[90px_1fr] sm:p-7"
+            >
               <span className="text-sm font-bold text-acid">{number}</span>
               <div>
-                <h3 className="text-2xl font-black uppercase leading-tight">{title}</h3>
+                <h3 className="text-2xl font-black uppercase leading-tight">
+                  {title}
+                </h3>
                 <p className="mt-3 max-w-2xl leading-7 text-milk/66">{text}</p>
               </div>
             </article>
@@ -322,9 +383,16 @@ function Contact() {
         </h2>
         <div className="space-y-6">
           <p className="text-lg leading-8 text-ink/72">
-            Elevate your digital presence with modern UI/UX design and front-end development that transforms ideas into engaging, memorable experiences.
+            Elevate your digital presence with modern UI/UX design and front-end
+            development that transforms ideas into engaging, memorable
+            experiences.
           </p>
-          <a href="https://wa.me/6283144995745" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-ink px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-milk transition hover:bg-milk hover:text-ink">
+          <a
+            href="https://wa.me/6283144995745"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-ink px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-milk transition hover:bg-milk hover:text-ink"
+          >
             contact me <MessageCircleMore size={17} />
           </a>
         </div>
