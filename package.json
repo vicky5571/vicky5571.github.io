@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://vickygalih.github.io",
+  "homepage": "https://vicky5571.github.io",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
