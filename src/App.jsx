@@ -6,6 +6,7 @@ import {
   useScroll,
   useSpring,
   useTransform,
+  useMotionValue,
   useMotionValueEvent,
 } from "framer-motion";
 import {
@@ -15,7 +16,6 @@ import {
   Play,
   Sparkles,
   X,
-  Zap,
   MessageCircleMore,
   Github,
   Linkedin,
@@ -482,25 +482,6 @@ function Hero() {
   );
 }
 
-function Marquee() {
-  return (
-    <div className="overflow-hidden border-y border-ink/15 bg-acid py-4 text-ink">
-      <div className="marquee-track flex w-max items-center gap-8 text-xl font-black uppercase tracking-[0.18em] sm:text-2xl">
-        {Array.from({ length: 8 }).map((_, index) => (
-          <React.Fragment key={index}>
-            <span>UI/UX Design</span>
-            <Zap size={22} />
-            <span>Full Stack Creative Design</span>
-            <Zap size={22} />
-            <span>Web Development</span>
-            <Zap size={22} />
-          </React.Fragment>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function Work() {
   const [activeCategory, setActiveCategory] = useState("All");
   const shouldReduceMotion = useReducedMotion();
@@ -828,7 +809,6 @@ export default function App() {
     <main className="min-h-screen overflow-x-hidden bg-ink font-body">
       <Header />
       <Hero />
-      <Marquee />
       <Work />
       <Method />
       <Contact />

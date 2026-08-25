@@ -67,9 +67,22 @@ canvas {
 .poster-frame-one {
   top: 11%;
   background:
-    radial-gradient(circle at 62% 20%, rgba(213, 255, 63, 0.95), transparent 12%),
-    radial-gradient(circle at 28% 74%, rgba(54, 215, 255, 0.55), transparent 18%),
-    linear-gradient(135deg, rgba(213, 255, 63, 0.12), rgba(245, 241, 232, 0.04) 38%, rgba(255, 94, 58, 0.42)),
+    radial-gradient(
+      circle at 62% 20%,
+      rgba(213, 255, 63, 0.95),
+      transparent 12%
+    ),
+    radial-gradient(
+      circle at 28% 74%,
+      rgba(54, 215, 255, 0.55),
+      transparent 18%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(213, 255, 63, 0.12),
+      rgba(245, 241, 232, 0.04) 38%,
+      rgba(255, 94, 58, 0.42)
+    ),
     #10100f;
   box-shadow: 0 3rem 8rem rgba(0, 0, 0, 0.45);
 }
@@ -80,7 +93,12 @@ canvas {
   width: min(29vw, 24rem);
   border-color: rgba(213, 255, 63, 0.45);
   background:
-    linear-gradient(100deg, transparent 0 22%, rgba(213, 255, 63, 0.85) 22% 27%, transparent 27% 100%),
+    linear-gradient(
+      100deg,
+      transparent 0 22%,
+      rgba(213, 255, 63, 0.85) 22% 27%,
+      transparent 27% 100%
+    ),
     linear-gradient(160deg, rgba(54, 215, 255, 0.4), rgba(255, 94, 58, 0.46)),
     #10100f;
   mix-blend-mode: screen;
@@ -118,19 +136,27 @@ canvas {
   pointer-events: none;
   opacity: 0.22;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(245, 241, 232, 0.45) 0 1px, transparent 1px),
-    radial-gradient(circle at 70% 55%, rgba(245, 241, 232, 0.35) 0 1px, transparent 1px);
-  background-size: 34px 34px, 47px 47px;
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(245, 241, 232, 0.45) 0 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 70% 55%,
+      rgba(245, 241, 232, 0.35) 0 1px,
+      transparent 1px
+    );
+  background-size:
+    34px 34px,
+    47px 47px;
   mask-image: linear-gradient(90deg, transparent, black 48%, black);
-}
-
-.marquee-track {
-  animation: marquee 28s linear infinite;
 }
 
 .project-card {
   transform: translateY(0);
-  transition: transform 450ms ease, box-shadow 450ms ease;
+  transition:
+    transform 450ms ease,
+    box-shadow 450ms ease;
 }
 
 .project-card:hover {
@@ -163,14 +189,22 @@ canvas {
 
 .project-visual-acid {
   background:
-    linear-gradient(90deg, rgba(213, 255, 63, 0.85) 0 18%, transparent 18% 100%),
+    linear-gradient(
+      90deg,
+      rgba(213, 255, 63, 0.85) 0 18%,
+      transparent 18% 100%
+    ),
     linear-gradient(135deg, rgba(213, 255, 63, 0.3), rgba(54, 215, 255, 0.2)),
     #10100f;
 }
 
 .project-visual-acid::before {
   border: 1px solid rgba(245, 241, 232, 0.26);
-  background: repeating-linear-gradient(135deg, rgba(245, 241, 232, 0.2) 0 1px, transparent 1px 12px);
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(245, 241, 232, 0.2) 0 1px,
+    transparent 1px 12px
+  );
 }
 
 .project-visual-acid::after {
@@ -185,8 +219,16 @@ canvas {
 
 .project-visual-cyan {
   background:
-    radial-gradient(circle at 28% 36%, rgba(54, 215, 255, 0.85), transparent 22%),
-    linear-gradient(120deg, rgba(245, 241, 232, 0.08), rgba(122, 92, 255, 0.42)),
+    radial-gradient(
+      circle at 28% 36%,
+      rgba(54, 215, 255, 0.85),
+      transparent 22%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(245, 241, 232, 0.08),
+      rgba(122, 92, 255, 0.42)
+    ),
     #10100f;
 }
 
@@ -196,7 +238,12 @@ canvas {
 }
 
 .project-visual-cyan::after {
-  background: linear-gradient(90deg, transparent 0 40%, rgba(54, 215, 255, 0.7) 40% 48%, transparent 48% 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0 40%,
+    rgba(54, 215, 255, 0.7) 40% 48%,
+    transparent 48% 100%
+  );
 }
 
 .project-visual-flame {
@@ -207,7 +254,14 @@ canvas {
 }
 
 .project-visual-flame::before {
-  background: conic-gradient(from 180deg, #ff5e3a, transparent, #d5ff3f, transparent, #ff5e3a);
+  background: conic-gradient(
+    from 180deg,
+    #ff5e3a,
+    transparent,
+    #d5ff3f,
+    transparent,
+    #ff5e3a
+  );
   filter: blur(18px);
   opacity: 0.72;
 }
@@ -246,15 +300,6 @@ canvas {
   50% {
     transform: scale(1.12);
     opacity: 1;
-  }
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
   }
 }
 
