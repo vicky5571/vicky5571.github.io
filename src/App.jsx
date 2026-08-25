@@ -512,7 +512,7 @@ function Work() {
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="mt-12 flex flex-wrap gap-2 border-b border-ink/15 pb-6">
+        <div className="mt-12 flex flex-wrap gap-6 sm:gap-8 border-b border-ink/15 pb-4">
           {categories.map((cat) => {
             const isActive = activeCategory === cat;
             return (
@@ -520,20 +520,18 @@ function Work() {
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`relative px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
-                  isActive
-                    ? "text-ink font-black"
-                    : "text-ink/65 hover:text-ink"
+                className={`relative pb-3 text-xs font-black uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
+                  isActive ? "text-ink" : "text-ink/45 hover:text-ink"
                 }`}
               >
+                <span>{cat}</span>
                 {isActive && (
                   <motion.div
                     layoutId="activeCategoryPill"
-                    className="absolute inset-0 bg-acid -z-10 shadow-sm"
-                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                    className="absolute -bottom-4 left-0 right-0 h-[2.5px] bg-ink"
+                    transition={{ type: "spring", stiffness: 420, damping: 30 }}
                   />
                 )}
-                <span>{cat}</span>
               </button>
             );
           })}
