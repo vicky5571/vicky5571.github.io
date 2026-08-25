@@ -13,8 +13,6 @@ import {
   ArrowUpRight,
   CircleDot,
   Menu,
-  Play,
-  Sparkles,
   X,
   MessageCircleMore,
   Github,
@@ -427,19 +425,11 @@ function Hero() {
           initial="hidden"
           animate="visible"
         >
-          <motion.div
-            variants={itemVariants}
-            className="mb-5 inline-flex items-center gap-2 border border-milk/15 bg-milk/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-milk/85 backdrop-blur"
-          >
-            <Sparkles size={14} className="text-acid" />
-            UI/UX Designer & Web Developer
-          </motion.div>
-
           <motion.h1
             variants={itemVariants}
             className="max-w-6xl text-balance text-[clamp(2.75rem,11vw,9.7rem)] font-black uppercase leading-[0.82] tracking-normal sm:text-[clamp(3.2rem,12vw,9.7rem)] sm:leading-[0.79]"
           >
-            Designing digital experiences.
+            Engineering scalable web products.
           </motion.h1>
 
           <motion.div
@@ -447,10 +437,10 @@ function Hero() {
             className="mt-6 grid gap-5 md:grid-cols-[0.9fr_1fr] md:items-end"
           >
             <p className="max-w-xl text-base leading-7 text-milk/80 md:text-xl md:leading-8">
-              I'm Vicky Galih Pamungkas, a UI/UX Designer and Web Developer
-              passionate about crafting intuitive, high-impact digital products
-              through user research, prototyping, and modern front-end
-              technologies.
+              I'm Vicky Galih Pamungkas, a Full Stack Web Developer passionate
+              about building robust, high-impact digital applications through
+              scalable backend systems, clean database architecture, and
+              performant front-end engineering.
             </p>
             <div className="flex flex-wrap gap-3 md:justify-end">
               <motion.a
@@ -464,15 +454,6 @@ function Hero() {
               >
                 Curriculum Vitae <ArrowUpRight size={17} />
               </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                href="#work"
-                className="inline-flex items-center gap-2 border border-milk/20 px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-milk transition-colors hover:border-cyan hover:text-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
-              >
-                View Work <Play size={16} />
-              </motion.a>
             </div>
           </motion.div>
         </motion.div>
@@ -484,9 +465,9 @@ function Hero() {
           className="mt-10 grid border-y border-white/10 text-sm text-milk/75 sm:grid-cols-3"
         >
           {[
-            "Design Systems & UI",
-            "Landing Pages & Apps",
-            "Prototypes & Code",
+            "Full Stack Architecture",
+            "Scalable Backend & APIs",
+            "Modern Front-End Engineering",
           ].map((item) => (
             <div
               key={item}
@@ -780,7 +761,8 @@ function Contact() {
         <div className="space-y-6">
           <p className="text-lg leading-8 text-ink/85">
             Have a project in mind or looking to hire? Elevate your digital
-            product with modern UI/UX design and front-end craftsmanship.
+            product with full-stack engineering and modern front-end
+            craftsmanship.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
@@ -800,7 +782,7 @@ function Contact() {
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              href="mailto:vickypamungkas557@gmail.com"
+              href="mailto:vickygp5571@gmail.com"
               className="inline-flex items-center gap-2 border-2 border-ink px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:bg-ink hover:text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
             >
               Email Me <Mail size={18} />
@@ -823,7 +805,7 @@ function Contact() {
                 <Github size={16} /> GitHub
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/vicky-galih-pamungkas/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Vicky on LinkedIn (opens in new tab)"
