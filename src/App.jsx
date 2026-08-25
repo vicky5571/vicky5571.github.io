@@ -105,36 +105,56 @@ const projects = [
   },
 ];
 
+const expCategories = [
+  "All",
+  "Tech & Dev",
+  "Corporate & IT",
+  "Creative & Photo",
+  "Data & Analytics",
+];
+
 const methods = [
+  [
+    "2026",
+    "IT Capability Building\nPT Indosat Tbk",
+    "Spearheaded technical capability development, IT talent enablement, and digital training programs to enhance organizational efficiency.",
+    "Corporate & IT",
+  ],
   [
     "2025",
     "Wedding & Event Photographer",
     "Creative visual direction, candid storytelling, and color grading for ceremonies and cultural events.",
+    "Creative & Photo",
   ],
   [
     "2025",
     "Disney Magical Runway Solo Paragon",
     "Backstage and runway fashion documentation during regional promotional showcase.",
+    "Creative & Photo",
   ],
   [
     "2025",
     "PHP Web Developer",
     "Built modular backend functionality, managed relational databases, and optimized query pipelines.",
+    "Tech & Dev",
   ],
   [
     "2024",
     "Front End Developer",
     "Engineered performant, responsive web interfaces with React, Tailwind CSS, and modern web tooling.",
+    "Tech & Dev",
   ],
   [
     "2023 - 2024",
     "Data Scientist",
     "Applied machine learning models, statistical analysis, and predictive workflows on structured data.",
+    "Data & Analytics",
   ],
   [
     "2022",
     "Data Analyst",
     "Synthesized raw metrics into executive dashboards, business insights, and KPI reporting systems.",
+    "Data & Analytics",
   ],
 ];
 
@@ -638,7 +658,13 @@ function Work() {
 }
 
 function Method() {
+  const [activeExpCategory, setActiveExpCategory] = useState("All");
   const shouldReduceMotion = useReducedMotion();
+
+  const filteredMethods =
+    activeExpCategory === "All"
+      ? methods
+      : methods.filter(([, , , cat]) => cat === activeExpCategory);
 
   return (
     <section id="method" className="bg-ink py-20 text-milk sm:py-28">
@@ -655,42 +681,81 @@ function Method() {
             rigor across front-end engineering, visual media, and data
             intelligence.
           </p>
+
+          {/* Brutalist Hard-Shadow Active Pills */}
+          <div className="mt-8 flex flex-wrap gap-2.5">
+            {expCategories.map((category) => {
+              const isActive = activeExpCategory === category;
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveExpCategory(category)}
+                  className={`relative px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
+                    isActive
+                      ? "text-ink font-black"
+                      : "border border-white/15 bg-white/[0.02] text-milk/70 hover:border-acid/60 hover:text-milk"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeExpPill"
+                      className="absolute inset-0 -z-10 border border-ink bg-acid shadow-[3px_3px_0px_#f5f1e8]"
+                      transition={{
+                        type: "spring",
+                        stiffness: 480,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">{category}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="grid gap-3">
-          {methods.map(([period, role, desc], i) => (
-            <motion.article
-              key={role}
-              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                delay: i * 0.08,
-                type: "spring",
-                stiffness: 280,
-                damping: 24,
-              }}
-              whileHover={{
-                borderColor: "rgba(213, 255, 63, 0.6)",
-                backgroundColor: "rgba(255, 255, 255, 0.06)",
-                transition: { duration: 0.2 },
-              }}
-              className="grid gap-4 border border-white/12 bg-white/[0.035] p-5 transition-colors sm:grid-cols-[130px_1fr] sm:p-7"
-            >
-              <span className="text-xs font-bold uppercase tracking-wider text-acid">
-                {period}
-              </span>
-              <div>
-                <h3 className="text-xl font-black uppercase leading-snug sm:text-2xl">
-                  {role}
-                </h3>
-                <p className="mt-2.5 max-w-2xl text-sm leading-relaxed text-milk/75">
-                  {desc}
-                </p>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+        <motion.div layout className="grid gap-3">
+          <AnimatePresence mode="popLayout">
+            {filteredMethods.map(([period, role, desc, cat], i) => (
+              <motion.article
+                layout
+                key={role}
+                initial={{ opacity: 0, scale: 0.97, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97, y: -10 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 26,
+                }}
+                whileHover={{
+                  borderColor: "rgba(213, 255, 63, 0.6)",
+                  backgroundColor: "rgba(255, 255, 255, 0.06)",
+                  transition: { duration: 0.2 },
+                }}
+                className="grid gap-4 border border-white/12 bg-white/[0.035] p-5 transition-colors sm:grid-cols-[130px_1fr] sm:p-7"
+              >
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-xs font-bold uppercase tracking-wider text-acid">
+                    {period}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-milk/40">
+                    {cat}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="whitespace-pre-line text-xl font-black uppercase leading-snug sm:text-2xl">
+                    {role}
+                  </h3>
+                  <p className="mt-2.5 max-w-2xl text-sm leading-relaxed text-milk/75">
+                    {desc}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );
