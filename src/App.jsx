@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 import {
   ArrowUpRight,
   CircleDot,
@@ -134,87 +142,219 @@ const categories = ["All", "UI/UX", "Full Stack", "Front End", "Photography"];
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const { scrollY, scrollYProgress } = useScroll();
+
+  // Spring-smoothed scroll progress with gentle damping for a wide friction zone
+  const smoothY = useSpring(scrollY, {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.15,
+  });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 300, damping: 30 });
+
+  useMotionValueEvent(smoothY, "change", (latest) => {
+    setIsScrolled(latest > 350);
+  });
+
+  // Mid-viewport & bottom-reach scroll waypoint detector
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      // 1. Bottom of page reached -> immediately activate Contact
+      if (scrollPosition + windowHeight >= docHeight - 80) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // 2. Middle-of-viewport focal line (45% from top)
+      const focalLine = scrollPosition + windowHeight * 0.45;
+
+      const sections = [
+        { id: "contact", el: document.getElementById("contact") },
+        { id: "method", el: document.getElementById("method") },
+        { id: "work", el: document.getElementById("work") },
+      ];
+
+      for (const section of sections) {
+        if (section.el && focalLine >= section.el.offsetTop) {
+          setActiveSection(section.id);
+          return;
+        }
+      }
+
+      // In Hero / Top section
+      setActiveSection("");
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Continuous frame-by-frame transforms driven by an expanded friction zone [0, 620px]
+  const navWidth = useTransform(smoothY, [0, 620], ["100%", "92%"]);
+  const navMaxWidth = useTransform(smoothY, [0, 620], ["100%", "56rem"]);
+  const navY = useTransform(smoothY, [0, 620], [0, 14]);
+  const navRadius = useTransform(smoothY, [0, 620], ["0px", "9999px"]);
+  const navPaddingY = useTransform(smoothY, [0, 620], ["14px", "10px"]);
+  const navPaddingX = useTransform(smoothY, [0, 620], ["0px", "16px"]);
+
+  // Inner nav container aligns with Hero max-w-7xl at top, and fills 100% of island on scroll
+  const innerMaxWidth = useTransform(smoothY, [0, 620], ["80rem", "100%"]);
+  const innerPaddingX = useTransform(smoothY, [0, 620], ["24px", "0px"]);
+
   const navLinks = [
-    ["Work", "#work"],
-    ["Experience", "#method"],
-    ["Contact", "#contact"],
+    ["Work", "#work", "work"],
+    ["Experience", "#method", "method"],
+    ["Contact", "#contact", "contact"],
   ];
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/80 backdrop-blur-xl">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a
-          href="#top"
-          className="group flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
+    <div className="fixed left-0 right-0 top-0 z-50 flex justify-center pointer-events-none">
+      <motion.header
+        style={{
+          width: navWidth,
+          maxWidth: navMaxWidth,
+          y: navY,
+          borderRadius: navRadius,
+          paddingTop: navPaddingY,
+          paddingBottom: navPaddingY,
+          paddingLeft: navPaddingX,
+          paddingRight: navPaddingX,
+        }}
+        className={`relative pointer-events-auto border backdrop-blur-2xl ${
+          isScrolled
+            ? "border-white/20 bg-ink/90 shadow-[0_16px_40px_rgba(0,0,0,0.7)]"
+            : "border-white/10 bg-ink/80 border-t-0 border-x-0"
+        }`}
+      >
+        <motion.nav
+          style={{
+            maxWidth: innerMaxWidth,
+            paddingLeft: innerPaddingX,
+            paddingRight: innerPaddingX,
+          }}
+          className="mx-auto flex w-full items-center justify-between"
         >
-          <span className="h-2.5 w-2.5 rounded-full bg-acid shadow-glow transition-transform duration-300 group-hover:scale-125" />
-          VICKY
-        </a>
-        <div className="hidden items-center gap-7 text-sm text-milk/80 md:flex">
-          {navLinks.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              className="transition duration-200 hover:text-acid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-        <motion.a
-          href="#contact"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
-          className="hidden items-center gap-2 rounded-full border border-milk/20 px-4 py-2 text-sm font-medium text-milk transition-colors hover:border-acid hover:text-acid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid md:flex"
-        >
-          Let's Connect <ArrowUpRight size={16} />
-        </motion.a>
-        <button
-          className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-milk transition hover:border-acid hover:text-acid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid md:hidden"
-          type="button"
-          aria-controls="mobile-menu"
-          aria-expanded={isMenuOpen}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          onClick={() => setIsMenuOpen((open) => !open)}
-        >
-          {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
-        </button>
-      </nav>
-
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-white/10 bg-ink/95 px-4 shadow-2xl backdrop-blur-2xl md:hidden"
+          <a
+            href="#top"
+            className="group flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
           >
-            <div className="mx-auto grid max-w-7xl gap-2 py-4">
-              {navLinks.map(([label, href]) => (
+            <span className="h-2.5 w-2.5 rounded-full bg-acid shadow-glow transition-transform duration-300 group-hover:scale-125" />
+            VICKY
+          </a>
+
+          {/* Desktop Nav Links with Sliding Active Pill */}
+          <div className="hidden items-center gap-1.5 md:flex">
+            {navLinks.map(([label, href, sectionId]) => {
+              const isActive = activeSection === sectionId;
+              return (
                 <a
                   key={href}
                   href={href}
-                  className="border border-white/10 px-4 py-3 text-sm font-bold uppercase tracking-[0.18em] text-milk/80 transition hover:border-acid hover:text-acid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
+                  className={`relative px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
+                    isActive ? "text-acid" : "text-milk/75 hover:text-milk"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavPill"
+                      className="absolute inset-0 -z-10 rounded-full bg-white/[0.08] border border-acid/40 shadow-glow"
+                      transition={{
+                        type: "spring",
+                        stiffness: 420,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">{label}</span>
+                </a>
+              );
+            })}
+          </div>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className={`inline-flex items-center gap-2 rounded-full border text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
+                isScrolled
+                  ? "bg-acid px-3.5 py-1.5 text-ink hover:bg-milk border-transparent"
+                  : "border-milk/20 px-4 py-2 text-milk hover:border-acid hover:text-acid"
+              }`}
+            >
+              Let's Connect <ArrowUpRight size={14} />
+            </motion.a>
+          </div>
+
+          <button
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-milk transition hover:border-acid hover:text-acid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid md:hidden"
+            type="button"
+            aria-controls="mobile-menu"
+            aria-expanded={isMenuOpen}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </motion.nav>
+
+        {/* Dynamic Island Scroll Progress Indicator Bar */}
+        <motion.div
+          style={{ scaleX }}
+          className="absolute bottom-0 left-6 right-6 h-[2px] origin-left rounded-full bg-acid/80"
+        />
+
+        {/* Mobile Menu Drawer with Active State */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              id="mobile-menu"
+              initial={{ height: 0, opacity: 0, marginTop: 0 }}
+              animate={{ height: "auto", opacity: 1, marginTop: 12 }}
+              exit={{ height: 0, opacity: 0, marginTop: 0 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden rounded-2xl border border-white/10 bg-ink/95 px-4 shadow-2xl backdrop-blur-2xl md:hidden"
+            >
+              <div className="grid gap-2 py-4">
+                {navLinks.map(([label, href, sectionId]) => {
+                  const isActive = activeSection === sectionId;
+                  return (
+                    <a
+                      key={href}
+                      href={href}
+                      className={`border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
+                        isActive
+                          ? "border-acid bg-acid/10 text-acid font-black"
+                          : "border-white/10 text-milk/80 hover:border-acid hover:text-acid"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {label}
+                    </a>
+                  );
+                })}
+                <a
+                  href="#contact"
+                  className="mt-1 inline-flex items-center justify-center gap-2 bg-acid px-4 py-2.5 text-xs font-black uppercase tracking-[0.16em] text-ink transition hover:bg-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {label}
+                  Let's Connect <ArrowUpRight size={14} />
                 </a>
-              ))}
-              <a
-                href="#contact"
-                className="mt-1 inline-flex items-center justify-center gap-2 bg-acid px-4 py-3 text-sm font-black uppercase tracking-[0.16em] text-ink transition hover:bg-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Let's Connect <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+    </div>
   );
 }
 
