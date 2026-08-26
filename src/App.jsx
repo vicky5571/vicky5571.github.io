@@ -400,7 +400,7 @@ function Header() {
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className={`inline-flex items-center gap-2 rounded-full border text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
                 isScrolled
-                  ? "bg-acid px-3.5 py-1.5 text-ink hover:bg-milk border-transparent"
+                  ? "bg-acid px-3.5 py-1.5 text-ink hover:bg-milk hover:text-ink border-transparent"
                   : "border-milk/20 px-4 py-2 text-milk hover:border-acid hover:text-acid"
               }`}
             >
@@ -463,7 +463,7 @@ function Header() {
                   variants={drawerItemVariants}
                   href="#contact"
                   onClick={(e) => scrollToSection(e, "#contact")}
-                  className="mt-1 inline-flex items-center justify-center gap-2 bg-acid px-4 py-2.5 text-xs font-black uppercase tracking-[0.16em] text-ink transition hover:bg-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
+                  className="mt-1 inline-flex items-center justify-center gap-2 bg-acid px-4 py-2.5 text-xs font-black uppercase tracking-[0.16em] text-ink transition hover:bg-milk hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
                 >
                   Let's Connect <ArrowUpRight size={14} />
                 </m.a>
@@ -550,7 +550,7 @@ function Hero() {
                 href="https://drive.google.com/file/d/1M8Tze7CDaDFWaORncTuWwVnmo6Exxxtk/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
+                className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-milk hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
               >
                 Curriculum Vitae <ArrowUpRight size={17} />
               </m.a>
