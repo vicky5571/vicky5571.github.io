@@ -344,6 +344,7 @@ function Header() {
         }`}
       >
         <m.nav
+          aria-label="Primary"
           style={{
             maxWidth: innerMaxWidth,
             paddingLeft: innerPaddingX,
@@ -361,7 +362,7 @@ function Header() {
           </a>
 
           {/* Desktop Nav Links with Sliding Active Pill */}
-          <div className="hidden items-center gap-1.5 md:flex">
+          <div className="hidden items-center gap-1.5 md:flex" role="navigation" aria-label="Primary desktop">
             {navLinks.map(([label, href, sectionId]) => {
               const isActive = activeSection === sectionId;
               return (
@@ -369,6 +370,7 @@ function Header() {
                   key={href}
                   href={href}
                   onClick={(e) => scrollToSection(e, href)}
+                  aria-current={isActive ? "page" : undefined}
                   className={`relative px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
                     isActive ? "text-acid" : "text-milk/75 hover:text-milk"
                   }`}
@@ -437,7 +439,7 @@ function Header() {
               exit="hidden"
               className="overflow-hidden rounded-xl border-t border-white/10 pt-2 md:hidden"
             >
-              <div className="grid gap-2 py-4">
+              <div className="grid gap-2 py-4" role="navigation" aria-label="Primary mobile">
                 {navLinks.map(([label, href, sectionId]) => {
                   const isActive = activeSection === sectionId;
                   return (
@@ -446,6 +448,7 @@ function Header() {
                       key={href}
                       href={href}
                       onClick={(e) => scrollToSection(e, href)}
+                      aria-current={isActive ? "page" : undefined}
                       className={`border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
                         isActive
                           ? "border-acid bg-acid/10 text-acid font-black"
@@ -607,12 +610,20 @@ function Work() {
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="mt-12 flex flex-wrap gap-6 sm:gap-8 border-b border-ink/15 pb-4">
+        <div
+          className="mt-12 flex flex-wrap gap-6 sm:gap-8 border-b border-ink/15 pb-4"
+          role="tablist"
+          aria-label="Filter work by category"
+        >
           {categories.map((cat) => {
             const isActive = activeCategory === cat;
             return (
               <button
                 key={cat}
+                id={`work-tab-${cat.replace(/\s+/g, "-").toLowerCase()}`}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls="work-panel"
                 type="button"
                 onClick={() => setActiveCategory(cat)}
                 className={`relative pb-3 text-xs font-black uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
@@ -633,7 +644,13 @@ function Work() {
         </div>
 
         {/* Projects Grid */}
-        <m.div layout className="mt-10 grid gap-6 lg:grid-cols-3">
+        <m.div
+          id="work-panel"
+          role="tabpanel"
+          aria-labelledby={`work-tab-${activeCategory.replace(/\s+/g, "-").toLowerCase()}`}
+          layout
+          className="mt-10 grid gap-6 lg:grid-cols-3"
+        >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <m.article
@@ -765,12 +782,16 @@ function Method() {
           </p>
 
           {/* Brutalist Hard-Shadow Active Pills */}
-          <div className="mt-8 flex flex-wrap gap-2.5">
+          <div className="mt-8 flex flex-wrap gap-2.5" role="tablist" aria-label="Filter experience by category">
             {expCategories.map((category) => {
               const isActive = activeExpCategory === category;
               return (
                 <button
                   key={category}
+                  id={`exp-tab-${category.replace(/\s+/g, "-").toLowerCase()}`}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls="experience-panel"
                   type="button"
                   onClick={() => setActiveExpCategory(category)}
                   className={`relative px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
@@ -799,7 +820,13 @@ function Method() {
           </div>
         </div>
 
-        <m.div layout className="grid gap-3">
+        <m.div
+          id="experience-panel"
+          role="tabpanel"
+          aria-labelledby={`exp-tab-${activeExpCategory.replace(/\s+/g, "-").toLowerCase()}`}
+          layout
+          className="grid gap-3"
+        >
           <AnimatePresence mode="popLayout">
             {filteredMethods.map(([period, role, desc, cat], i) => (
               <m.article
@@ -961,13 +988,21 @@ function Footer() {
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-ink font-body">
+    <div className="min-h-screen bg-ink font-body">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-acid focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:uppercase focus:tracking-widest focus:text-ink focus:outline-none focus:ring-2 focus:ring-milk"
+      >
+        Skip to content
+      </a>
       <Header />
-      <Hero />
-      <Work />
-      <Method />
-      <Contact />
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        <Hero />
+        <Work />
+        <Method />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
