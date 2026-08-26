@@ -756,24 +756,26 @@ function Method() {
                   key={category}
                   type="button"
                   onClick={() => setActiveExpCategory(category)}
-                  className={`relative px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
+                  className={`relative px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
                     isActive
-                      ? "text-ink font-black"
+                      ? "text-ink"
                       : "border border-white/15 bg-white/[0.02] text-milk/70 hover:border-acid/60 hover:text-milk"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeExpPill"
-                      className="absolute inset-0 -z-10 border border-ink bg-acid shadow-[3px_3px_0px_#f5f1e8]"
+                      className="absolute inset-0 border border-ink bg-acid shadow-[3px_3px_0px_#f5f1e8]"
                       transition={{
                         type: "spring",
-                        stiffness: 480,
-                        damping: 30,
+                        stiffness: 450,
+                        damping: 28,
                       }}
                     />
                   )}
-                  <span className="relative z-10">{category}</span>
+                  <span className="relative z-10 pointer-events-none">
+                    {category}
+                  </span>
                 </button>
               );
             })}
