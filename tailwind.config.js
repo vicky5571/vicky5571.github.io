@@ -4,8 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ["Inter", "ui-sans-serif", "system-ui"],
-        body: ["Inter", "ui-sans-serif", "system-ui"]
+        display: ["Playfair Display", "Georgia", "serif"],
+        body: ["Inter", "ui-sans-serif", "system-ui"],
+        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
       colors: {
         ink: "#10100f",

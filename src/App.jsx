@@ -524,7 +524,7 @@ function Hero() {
         >
           <m.h1
             variants={itemVariants}
-            className="max-w-6xl text-balance text-[clamp(2.75rem,11vw,9.7rem)] font-black uppercase leading-[0.82] tracking-normal sm:text-[clamp(3.2rem,12vw,9.7rem)] sm:leading-[0.79]"
+            className="max-w-6xl text-balance font-display text-[clamp(2.75rem,10vw,6.25rem)] font-black uppercase leading-[0.88] tracking-[-0.02em] sm:text-[clamp(3rem,9vw,7rem)] sm:leading-[0.88] lg:text-[clamp(4rem,8vw,7.5rem)]"
           >
             Engineering scalable web products.
           </m.h1>
@@ -595,7 +595,7 @@ function Work() {
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div>
             <span className="mb-3 block text-xs font-bold uppercase tracking-[0.24em] text-ink/70"></span>
-            <h2 className="text-[clamp(2.4rem,7vw,6.5rem)] font-black uppercase leading-[0.86] tracking-normal">
+            <h2 className="font-display text-[clamp(2.4rem,7vw,6.5rem)] font-black uppercase leading-[0.88] tracking-[-0.015em]">
               Work that feels like a magazine cover.
             </h2>
           </div>
@@ -755,7 +755,7 @@ function Method() {
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.28em] text-acid">
             Career Journey
           </p>
-          <h2 className="text-[clamp(2.2rem,6vw,5.6rem)] font-black uppercase leading-[0.88] tracking-normal">
+          <h2 className="font-display text-[clamp(2.2rem,6vw,5.6rem)] font-black uppercase leading-[0.88] tracking-[-0.015em]">
             Light work, heavy presence.
           </h2>
           <p className="mt-6 max-w-md text-base leading-7 text-milk/75">
@@ -856,7 +856,7 @@ function Contact() {
           <span className="mb-3 block text-xs font-black uppercase tracking-[0.24em] text-ink/75">
             Let's Collaborate
           </span>
-          <h2 className="text-[clamp(2.6rem,8vw,7rem)] font-black uppercase leading-[0.84] tracking-normal">
+          <h2 className="font-display text-[clamp(2.6rem,8vw,6.5rem)] font-black uppercase leading-[0.88] tracking-[-0.015em]">
             Make it memorable.
           </h2>
         </div>
