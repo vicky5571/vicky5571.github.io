@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
-  motion,
+  m,
   AnimatePresence,
   useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
-  useMotionValue,
   useMotionValueEvent,
 } from "framer-motion";
 import {
@@ -29,6 +28,8 @@ const projects = [
     year: "2025",
     tone: "acid",
     image: "/img/stealthforce.webp",
+    width: 1600,
+    height: 829,
     link: "https://ecommerce-sanity-build-bewn7zdp2-vicky-galih-pamungas-projects.vercel.app/",
     stack: [
       "Next.js",
@@ -47,6 +48,8 @@ const projects = [
     year: "2024",
     tone: "acid",
     image: "/img/redefined-gaming.webp",
+    width: 1600,
+    height: 1000,
     link: "https://redefined-gaming.vercel.app/",
     stack: ["React", "Motion", "Tailwind"],
     copy: "High-octane gaming landing experience engineered with fluid animation sequences and interactive micro-interactions.",
@@ -57,6 +60,8 @@ const projects = [
     year: "2024",
     tone: "acid",
     image: "/img/dyno-graphy.webp",
+    width: 1600,
+    height: 909,
     link: "https://portfolio-dynography.vercel.app/",
     stack: ["Tailwind", "PostCSS", "JavaScript"],
     copy: "Photography portfolio showcase crafted with custom Tailwind design tokens and fluid responsive typography.",
@@ -67,6 +72,8 @@ const projects = [
     year: "2024",
     tone: "acid",
     image: "/img/seo-project-tracker.webp",
+    width: 1600,
+    height: 914,
     link: "https://nextjs-seo-project-tracker.vercel.app/",
     stack: ["Next.js", "Supabase", "Typescript"],
     copy: "Keyword analytics dashboard with automated ranking tracking and real-time Supabase database sync.",
@@ -77,6 +84,8 @@ const projects = [
     year: "2024",
     tone: "cyan",
     image: "/img/tomato.webp",
+    width: 1098,
+    height: 574,
     link: "https://www.figma.com/design/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=0-1&t=gE2WA9YVxasitwte-1",
     stack: ["Figma", "Prototype", "User Research"],
     copy: "User-centered mobile app flow designed to simplify checkout friction and enhance food discovery.",
@@ -87,6 +96,8 @@ const projects = [
     year: "2024",
     tone: "acid",
     image: "/img/nike.webp",
+    width: 1600,
+    height: 860,
     link: "https://www.figma.com/proto/1trUpyy1LO4XNU1sUOHx9i/Tomato---Fast-Food-Mobile-App-Design?node-id=1170-56&t=DOxDIfp3AD9HAmod-1",
     stack: ["Figma", "Landing Page", "Design System"],
     copy: "Editorial e-commerce concept focusing on bold brand imagery, product hierarchy, and immersive storytelling.",
@@ -97,6 +108,8 @@ const projects = [
     year: "2025",
     tone: "flame",
     image: "/img/photo-session.webp",
+    width: 639,
+    height: 858,
     link: "https://www.instagram.com/kkn.hargomulyo2025?igsh=MXI0Mm56NWpla3ozaA==",
     stack: ["Photography", "Lightroom", "Visual Direction"],
     copy: "Editorial portraiture and visual storytelling with custom color grading and atmospheric lighting.",
@@ -313,7 +326,7 @@ function Header() {
 
   return (
     <div className="fixed left-0 right-0 top-0 z-50 flex justify-center pointer-events-none">
-      <motion.header
+      <m.header
         style={{
           width: navWidth,
           maxWidth: navMaxWidth,
@@ -330,7 +343,7 @@ function Header() {
             : "border-white/10 bg-ink/80 border-t-0 border-x-0"
         }`}
       >
-        <motion.nav
+        <m.nav
           style={{
             maxWidth: innerMaxWidth,
             paddingLeft: innerPaddingX,
@@ -361,7 +374,7 @@ function Header() {
                   }`}
                 >
                   {isActive && (
-                    <motion.div
+                    <m.div
                       layoutId="activeNavPill"
                       className="absolute inset-0 -z-10 rounded-full bg-white/[0.08] border border-acid/40 shadow-glow"
                       transition={{
@@ -378,7 +391,7 @@ function Header() {
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
-            <motion.a
+            <m.a
               href="#contact"
               onClick={(e) => scrollToSection(e, "#contact")}
               whileHover={{ scale: 1.04 }}
@@ -390,7 +403,7 @@ function Header() {
               }`}
             >
               Let's Connect <ArrowUpRight size={14} />
-            </motion.a>
+            </m.a>
           </div>
 
           <button
@@ -403,11 +416,11 @@ function Header() {
           >
             {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
-        </motion.nav>
+        </m.nav>
 
         {/* Dynamic Island Scroll Progress Indicator Bar (hidden when mobile menu open) */}
         {!isMenuOpen && (
-          <motion.div
+          <m.div
             style={{ scaleX }}
             className="absolute bottom-0 left-6 right-6 h-[2px] origin-left rounded-full bg-acid/80"
           />
@@ -416,7 +429,7 @@ function Header() {
         {/* Mobile Menu Drawer with Staggered Link Entrance */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div
+            <m.div
               id="mobile-menu"
               variants={drawerVariants}
               initial="hidden"
@@ -428,7 +441,7 @@ function Header() {
                 {navLinks.map(([label, href, sectionId]) => {
                   const isActive = activeSection === sectionId;
                   return (
-                    <motion.a
+                    <m.a
                       variants={drawerItemVariants}
                       key={href}
                       href={href}
@@ -440,22 +453,22 @@ function Header() {
                       }`}
                     >
                       {label}
-                    </motion.a>
+                    </m.a>
                   );
                 })}
-                <motion.a
+                <m.a
                   variants={drawerItemVariants}
                   href="#contact"
                   onClick={(e) => scrollToSection(e, "#contact")}
                   className="mt-1 inline-flex items-center justify-center gap-2 bg-acid px-4 py-2.5 text-xs font-black uppercase tracking-[0.16em] text-ink transition hover:bg-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
                 >
                   Let's Connect <ArrowUpRight size={14} />
-                </motion.a>
+                </m.a>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
-      </motion.header>
+      </m.header>
     </div>
   );
 }
@@ -503,20 +516,20 @@ function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,16,15,0.98)_0%,rgba(16,16,15,0.86)_45%,rgba(16,16,15,0.36)_100%)]" />
       <HeroPoster />
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-4 pb-7 pt-28 sm:px-6 lg:px-8 lg:pb-10">
-        <motion.div
+        <m.div
           className="max-w-5xl"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.h1
+          <m.h1
             variants={itemVariants}
             className="max-w-6xl text-balance text-[clamp(2.75rem,11vw,9.7rem)] font-black uppercase leading-[0.82] tracking-normal sm:text-[clamp(3.2rem,12vw,9.7rem)] sm:leading-[0.79]"
           >
             Engineering scalable web products.
-          </motion.h1>
+          </m.h1>
 
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="mt-6 grid gap-5 md:grid-cols-[0.9fr_1fr] md:items-end"
           >
@@ -527,7 +540,7 @@ function Hero() {
               performant front-end engineering.
             </p>
             <div className="flex flex-wrap gap-3 md:justify-end">
-              <motion.a
+              <m.a
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -537,12 +550,12 @@ function Hero() {
                 className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
               >
                 Curriculum Vitae <ArrowUpRight size={17} />
-              </motion.a>
+              </m.a>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
@@ -561,7 +574,7 @@ function Hero() {
               {item}
             </div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
@@ -608,7 +621,7 @@ function Work() {
               >
                 <span>{cat}</span>
                 {isActive && (
-                  <motion.div
+                  <m.div
                     layoutId="activeCategoryPill"
                     className="absolute -bottom-4 left-0 right-0 h-[2.5px] bg-ink"
                     transition={{ type: "spring", stiffness: 420, damping: 30 }}
@@ -620,10 +633,10 @@ function Work() {
         </div>
 
         {/* Projects Grid */}
-        <motion.div layout className="mt-10 grid gap-6 lg:grid-cols-3">
+        <m.div layout className="mt-10 grid gap-6 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
-              <motion.article
+              <m.article
                 layout
                 key={project.name}
                 initial={{
@@ -659,7 +672,11 @@ function Work() {
                     <img
                       src={project.image}
                       alt={`${project.name} preview`}
-                      loading="lazy"
+                      width={project.width}
+                      height={project.height}
+                      loading={index < 2 ? "eager" : "lazy"}
+                      fetchPriority={index < 2 ? "high" : "low"}
+                      decoding="async"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <span className="project-index absolute left-4 top-4 select-none drop-shadow-[0_6px_12px_rgba(0,0,0,0.8)]">
@@ -709,10 +726,10 @@ function Work() {
                     />
                   </a>
                 </div>
-              </motion.article>
+              </m.article>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
@@ -763,7 +780,7 @@ function Method() {
                   }`}
                 >
                   {isActive && (
-                    <motion.div
+                    <m.div
                       layoutId="activeExpPill"
                       className="absolute inset-0 border border-ink bg-acid shadow-[3px_3px_0px_#f5f1e8]"
                       transition={{
@@ -782,10 +799,10 @@ function Method() {
           </div>
         </div>
 
-        <motion.div layout className="grid gap-3">
+        <m.div layout className="grid gap-3">
           <AnimatePresence mode="popLayout">
             {filteredMethods.map(([period, role, desc, cat], i) => (
-              <motion.article
+              <m.article
                 layout
                 key={role}
                 initial={{ opacity: 0, scale: 0.97, y: 15 }}
@@ -819,10 +836,10 @@ function Method() {
                     {desc}
                   </p>
                 </div>
-              </motion.article>
+              </m.article>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
@@ -852,7 +869,7 @@ function Contact() {
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
-            <motion.a
+            <m.a
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -862,9 +879,9 @@ function Contact() {
               className="inline-flex items-center gap-3 bg-ink px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-milk transition-colors hover:bg-milk hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
             >
               Contact via WhatsApp <MessageCircleMore size={18} />
-            </motion.a>
+            </m.a>
 
-            <motion.a
+            <m.a
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -872,7 +889,7 @@ function Contact() {
               className="inline-flex items-center gap-2 border-2 border-ink px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:bg-ink hover:text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
             >
               Email Me <Mail size={18} />
-            </motion.a>
+            </m.a>
           </div>
 
           {/* Social Links */}
@@ -924,7 +941,7 @@ function Footer() {
           &copy; {new Date().getFullYear()} Vicky Galih Pamungkas. All rights
           reserved.
         </p>
-        <motion.a
+        <m.a
           href="#top"
           onClick={(e) => {
             e.preventDefault();
@@ -936,7 +953,7 @@ function Footer() {
           className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-acid transition-colors hover:text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
         >
           Back to Top <ArrowUp size={14} />
-        </motion.a>
+        </m.a>
       </div>
     </footer>
   );
