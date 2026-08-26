@@ -611,7 +611,7 @@ function Work() {
 
         {/* Category Filter Tabs */}
         <div
-          className="mt-12 flex flex-wrap gap-6 sm:gap-8 border-b border-ink/15 pb-4"
+          className="mt-12 flex flex-wrap gap-6 sm:gap-8 border-b border-ink/15"
           role="tablist"
           aria-label="Filter work by category"
         >
@@ -626,7 +626,7 @@ function Work() {
                 aria-controls="work-panel"
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`relative pb-3 text-xs font-black uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
+                className={`relative py-3 pb-4 text-xs font-black uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
                   isActive ? "text-ink" : "text-ink/45 hover:text-ink"
                 }`}
               >
@@ -634,7 +634,7 @@ function Work() {
                 {isActive && (
                   <m.div
                     layoutId="activeCategoryPill"
-                    className="absolute -bottom-4 left-0 right-0 h-[2.5px] bg-ink"
+                    className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-ink"
                     transition={{ type: "spring", stiffness: 420, damping: 30 }}
                   />
                 )}
@@ -696,7 +696,28 @@ function Work() {
                       decoding="async"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <span className="project-index absolute left-4 top-4 select-none drop-shadow-[0_6px_12px_rgba(0,0,0,0.8)]">
+                    {/* Scrim ensures 01/02 legibility on light images - 4.5:1 guarantee */}
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/15 to-transparent"
+                      aria-hidden="true"
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className={`project-index absolute left-4 top-4 select-none text-milk drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-all duration-300 ${
+                        [
+                          "group-hover:text-acid group-hover:drop-shadow-[0_0_14px_rgba(213,255,63,0.65)]",
+                          "group-hover:text-cyan group-hover:drop-shadow-[0_0_14px_rgba(54,215,255,0.65)]",
+                          "group-hover:text-flame group-hover:drop-shadow-[0_0_14px_rgba(255,94,58,0.65)]",
+                          "group-hover:text-plum group-hover:drop-shadow-[0_0_14px_rgba(122,92,255,0.65)]",
+                          "group-hover:text-cyan group-hover:drop-shadow-[0_0_14px_rgba(54,215,255,0.65)]",
+                          "group-hover:text-acid group-hover:drop-shadow-[0_0_14px_rgba(213,255,63,0.65)]",
+                          "group-hover:text-flame group-hover:drop-shadow-[0_0_14px_rgba(255,94,58,0.65)]",
+                        ][index % 7]
+                      }`}
+                    >
                       0{index + 1}
                     </span>
                   </div>
@@ -768,7 +789,7 @@ function Method() {
     >
       <span id="method" className="sr-only" />
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-        <div className="lg:sticky lg:top-28 lg:h-fit">
+        <div className="lg:sticky lg:top-24 lg:h-fit lg:self-start">
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.28em] text-acid">
             Career Journey
           </p>
