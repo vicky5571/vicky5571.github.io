@@ -194,7 +194,12 @@ function Header() {
 
       const sections = [
         { id: "contact", el: document.getElementById("contact") },
-        { id: "method", el: document.getElementById("method") },
+        {
+          id: "experience",
+          el:
+            document.getElementById("experience") ||
+            document.getElementById("method"),
+        },
         { id: "work", el: document.getElementById("work") },
       ];
 
@@ -219,7 +224,8 @@ function Header() {
   const navWidth = useTransform(smoothY, [0, 620], ["100%", "92%"]);
   const navMaxWidth = useTransform(smoothY, [0, 620], ["100%", "56rem"]);
   const navY = useTransform(smoothY, [0, 620], [0, 14]);
-  const navRadius = useTransform(smoothY, [0, 620], ["0px", "9999px"]);
+  // 32px provides a true pill shape on a 50px header, allowing buttery smooth interpolation to 24px
+  const navRadius = useTransform(smoothY, [0, 620], ["0px", "32px"]);
   const navPaddingY = useTransform(smoothY, [0, 620], ["14px", "10px"]);
   const navPaddingX = useTransform(smoothY, [0, 620], ["0px", "16px"]);
 
@@ -227,11 +233,74 @@ function Header() {
   const innerMaxWidth = useTransform(smoothY, [0, 620], ["80rem", "100%"]);
   const innerPaddingX = useTransform(smoothY, [0, 620], ["24px", "0px"]);
 
+  const scrollToSection = (e, href) => {
+    if (e && e.preventDefault) e.preventDefault();
+    setIsMenuOpen(false);
+    const targetId = href.replace("#", "");
+    if (targetId === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.history.pushState(null, "", "#top");
+      return;
+    }
+    const targetElement =
+      document.getElementById(targetId) ||
+      (targetId === "experience" ? document.getElementById("method") : null);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", href);
+    }
+  };
+
   const navLinks = [
     ["Work", "#work", "work"],
-    ["Experience", "#method", "method"],
+    ["Experience", "#experience", "experience"],
     ["Contact", "#contact", "contact"],
   ];
+
+  const drawerVariants = {
+    hidden: {
+      height: 0,
+      opacity: 0,
+      marginTop: 0,
+      transition: {
+        height: { duration: 0.28, ease: [0.16, 1, 0.3, 1] },
+        opacity: { duration: 0.18 },
+        marginTop: { duration: 0.22 },
+      },
+    },
+    visible: {
+      height: "auto",
+      opacity: 1,
+      marginTop: 10,
+      transition: {
+        // Smoothly wait for the continuous 500ms corner morphing to establish
+        height: {
+          delay: 0.18,
+          duration: 0.45,
+          ease: [0.16, 1, 0.3, 1],
+        },
+        opacity: { delay: 0.18, duration: 0.35 },
+        marginTop: { delay: 0.18, duration: 0.3 },
+        staggerChildren: 0.08,
+        delayChildren: 0.32, // Cascades links once card is fully unfurled
+      },
+    },
+  };
+
+  const drawerItemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 12,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
 
   return (
     <div className="fixed left-0 right-0 top-0 z-50 flex justify-center pointer-events-none">
@@ -240,15 +309,15 @@ function Header() {
           width: navWidth,
           maxWidth: navMaxWidth,
           y: navY,
-          borderRadius: navRadius,
+          borderRadius: isMenuOpen ? "24px" : navRadius,
           paddingTop: navPaddingY,
-          paddingBottom: navPaddingY,
+          paddingBottom: isMenuOpen ? "14px" : navPaddingY,
           paddingLeft: navPaddingX,
           paddingRight: navPaddingX,
         }}
-        className={`relative pointer-events-auto border backdrop-blur-2xl ${
-          isScrolled
-            ? "border-white/20 bg-ink/90 shadow-[0_16px_40px_rgba(0,0,0,0.7)]"
+        className={`relative pointer-events-auto border backdrop-blur-2xl transition-[border-radius,padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isScrolled || isMenuOpen
+            ? "border-white/20 bg-ink/95 shadow-[0_16px_40px_rgba(0,0,0,0.7)]"
             : "border-white/10 bg-ink/80 border-t-0 border-x-0"
         }`}
       >
@@ -262,6 +331,7 @@ function Header() {
         >
           <a
             href="#top"
+            onClick={(e) => scrollToSection(e, "#top")}
             className="group flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
           >
             <span className="h-2.5 w-2.5 rounded-full bg-acid shadow-glow transition-transform duration-300 group-hover:scale-125" />
@@ -276,6 +346,7 @@ function Header() {
                 <a
                   key={href}
                   href={href}
+                  onClick={(e) => scrollToSection(e, href)}
                   className={`relative px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
                     isActive ? "text-acid" : "text-milk/75 hover:text-milk"
                   }`}
@@ -300,8 +371,8 @@ function Header() {
           <div className="hidden items-center gap-3 md:flex">
             <motion.a
               href="#contact"
+              onClick={(e) => scrollToSection(e, "#contact")}
               whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className={`inline-flex items-center gap-2 rounded-full border text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
                 isScrolled
@@ -325,48 +396,52 @@ function Header() {
           </button>
         </motion.nav>
 
-        {/* Dynamic Island Scroll Progress Indicator Bar */}
-        <motion.div
-          style={{ scaleX }}
-          className="absolute bottom-0 left-6 right-6 h-[2px] origin-left rounded-full bg-acid/80"
-        />
+        {/* Dynamic Island Scroll Progress Indicator Bar (hidden when mobile menu open) */}
+        {!isMenuOpen && (
+          <motion.div
+            style={{ scaleX }}
+            className="absolute bottom-0 left-6 right-6 h-[2px] origin-left rounded-full bg-acid/80"
+          />
+        )}
 
-        {/* Mobile Menu Drawer with Active State */}
+        {/* Mobile Menu Drawer with Staggered Link Entrance */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               id="mobile-menu"
-              initial={{ height: 0, opacity: 0, marginTop: 0 }}
-              animate={{ height: "auto", opacity: 1, marginTop: 12 }}
-              exit={{ height: 0, opacity: 0, marginTop: 0 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden rounded-2xl border border-white/10 bg-ink/95 px-4 shadow-2xl backdrop-blur-2xl md:hidden"
+              variants={drawerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              className="overflow-hidden rounded-xl border-t border-white/10 pt-2 md:hidden"
             >
               <div className="grid gap-2 py-4">
                 {navLinks.map(([label, href, sectionId]) => {
                   const isActive = activeSection === sectionId;
                   return (
-                    <a
+                    <motion.a
+                      variants={drawerItemVariants}
                       key={href}
                       href={href}
+                      onClick={(e) => scrollToSection(e, href)}
                       className={`border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
                         isActive
                           ? "border-acid bg-acid/10 text-acid font-black"
                           : "border-white/10 text-milk/80 hover:border-acid hover:text-acid"
                       }`}
-                      onClick={() => setIsMenuOpen(false)}
                     >
                       {label}
-                    </a>
+                    </motion.a>
                   );
                 })}
-                <a
+                <motion.a
+                  variants={drawerItemVariants}
                   href="#contact"
+                  onClick={(e) => scrollToSection(e, "#contact")}
                   className="mt-1 inline-flex items-center justify-center gap-2 bg-acid px-4 py-2.5 text-xs font-black uppercase tracking-[0.16em] text-ink transition hover:bg-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   Let's Connect <ArrowUpRight size={14} />
-                </a>
+                </motion.a>
               </div>
             </motion.div>
           )}
@@ -493,13 +568,11 @@ function Work() {
       : projects.filter((p) => p.type === activeCategory);
 
   return (
-    <section id="work" className="bg-milk py-20 text-ink sm:py-28">
+    <section id="work" className="bg-milk py-20 text-ink sm:py-28 scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div>
-            <span className="mb-3 block text-xs font-bold uppercase tracking-[0.24em] text-ink/70">
-              Selected Projects
-            </span>
+            <span className="mb-3 block text-xs font-bold uppercase tracking-[0.24em] text-ink/70"></span>
             <h2 className="text-[clamp(2.4rem,7vw,6.5rem)] font-black uppercase leading-[0.86] tracking-normal">
               Work that feels like a magazine cover.
             </h2>
@@ -646,7 +719,11 @@ function Method() {
       : methods.filter(([, , , cat]) => cat === activeExpCategory);
 
   return (
-    <section id="method" className="bg-ink py-20 text-milk sm:py-28">
+    <section
+      id="experience"
+      className="bg-ink py-20 text-milk sm:py-28 scroll-mt-20"
+    >
+      <span id="method" className="sr-only" />
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <div className="lg:sticky lg:top-28 lg:h-fit">
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.28em] text-acid">
@@ -744,7 +821,7 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-flame py-20 text-ink sm:py-24"
+      className="relative overflow-hidden bg-flame py-20 text-ink sm:py-24 scroll-mt-20"
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-8">
         <div>
@@ -838,6 +915,11 @@ function Footer() {
         </p>
         <motion.a
           href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.history.pushState(null, "", "#top");
+          }}
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
           className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-acid transition-colors hover:text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
