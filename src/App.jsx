@@ -394,14 +394,14 @@ function Header() {
           </div>
 
           <button
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-milk transition hover:border-acid hover:text-acid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid md:hidden"
+            className="grid h-11 w-11 min-h-[44px] min-w-[44px] place-items-center rounded-full border border-white/15 text-milk transition hover:border-acid hover:text-acid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid md:hidden"
             type="button"
             aria-controls="mobile-menu"
             aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             onClick={() => setIsMenuOpen((open) => !open)}
           >
-            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+            {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </motion.nav>
 

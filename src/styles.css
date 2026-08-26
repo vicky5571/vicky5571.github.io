@@ -20,6 +20,8 @@ html {
   scroll-behavior: smooth;
   background: #10100f;
   overflow-x: clip;
+  scrollbar-width: thin;
+  scrollbar-color: #d5ff3f transparent;
 }
 
 body {
@@ -27,6 +29,40 @@ body {
   min-width: 320px;
   background: #10100f;
   overflow-x: clip;
+}
+
+/* Acid green scrollbar — Chrome / Edge / Safari — transparent track */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d5ff3f;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e0ff6b;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #ccf536;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 ::selection {
