@@ -234,21 +234,30 @@ function Header() {
   const innerPaddingX = useTransform(smoothY, [0, 620], ["24px", "0px"]);
 
   const scrollToSection = (e, href) => {
-    if (e && e.preventDefault) e.preventDefault();
+    if (e && typeof e.preventDefault === "function") {
+      e.preventDefault();
+    }
     setIsMenuOpen(false);
+
     const targetId = href.replace("#", "");
-    if (targetId === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      window.history.pushState(null, "", "#top");
-      return;
-    }
-    const targetElement =
-      document.getElementById(targetId) ||
-      (targetId === "experience" ? document.getElementById("method") : null);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-      window.history.pushState(null, "", href);
-    }
+
+    // Defer scroll slightly on mobile so drawer closing transition doesn't abort the scroll gesture
+    setTimeout(() => {
+      if (targetId === "top") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.history.pushState(null, "", "#top");
+        return;
+      }
+
+      const targetElement =
+        document.getElementById(targetId) ||
+        (targetId === "experience" ? document.getElementById("method") : null);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.pushState(null, "", href);
+      }
+    }, 60);
   };
 
   const navLinks = [
@@ -933,7 +942,7 @@ function Footer() {
 
 export default function App() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-ink font-body">
+    <main className="min-h-screen bg-ink font-body">
       <Header />
       <Hero />
       <Work />
