@@ -189,48 +189,76 @@ function Header() {
     setIsScrolled(latest > 350);
   });
 
-  // Mid-viewport & bottom-reach scroll waypoint detector
+  // IntersectionObserver waypoint — debounced, no focalLine jitter at 900px
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
+    const sections = [
+      { id: "work", el: document.getElementById("work") },
+      {
+        id: "experience",
+        el:
+          document.getElementById("experience") ||
+          document.getElementById("method"),
+      },
+      { id: "contact", el: document.getElementById("contact") },
+    ].filter((s) => s.el);
 
-      // 1. Bottom of page reached -> immediately activate Contact
-      if (scrollPosition + windowHeight >= docHeight - 80) {
-        setActiveSection("contact");
-        return;
+    if (sections.length === 0) return;
+
+    let rafId = null;
+    const ratioMap = new Map();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const logical = sections.find((s) => s.el === entry.target)?.id;
+          if (logical) ratioMap.set(logical, entry);
+        });
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          // Bottom lock — contact active when near document end
+          if (
+            window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 80
+          ) {
+            setActiveSection("contact");
+            return;
+          }
+          // Top — hero has no section
+          if (window.scrollY < 120) {
+            setActiveSection("");
+            return;
+          }
+
+          // Pick most-visible in central band; stable at Work↔Experience boundary (~900px)
+          let bestId = null;
+          let bestRatio = 0;
+          ratioMap.forEach((entry, id) => {
+            if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
+              bestRatio = entry.intersectionRatio;
+              bestId = id;
+            }
+          });
+
+          if (bestId) setActiveSection(bestId);
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
       }
+    );
 
-      // 2. Middle-of-viewport focal line (45% from top)
-      const focalLine = scrollPosition + windowHeight * 0.45;
+    sections.forEach((s) => observer.observe(s.el));
 
-      const sections = [
-        { id: "contact", el: document.getElementById("contact") },
-        {
-          id: "experience",
-          el:
-            document.getElementById("experience") ||
-            document.getElementById("method"),
-        },
-        { id: "work", el: document.getElementById("work") },
-      ];
+    // Initial state for hero
+    if (window.scrollY < 120) setActiveSection("");
 
-      for (const section of sections) {
-        if (section.el && focalLine >= section.el.offsetTop) {
-          setActiveSection(section.id);
-          return;
-        }
-      }
-
-      // In Hero / Top section
-      setActiveSection("");
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      observer.disconnect();
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Continuous frame-by-frame transforms driven by an expanded friction zone [0, 620px]
