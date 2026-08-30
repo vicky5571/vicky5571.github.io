@@ -20,6 +20,7 @@ import {
   Mail,
   ArrowUp,
 } from "lucide-react";
+import { MacbookScroll } from "./components/MacbookScroll";
 
 const projects = [
   {
@@ -247,7 +248,7 @@ function Header() {
         root: null,
         rootMargin: "-45% 0px -45% 0px",
         threshold: [0, 0.25, 0.5, 0.75, 1],
-      }
+      },
     );
 
     sections.forEach((s) => observer.observe(s.el));
@@ -390,7 +391,11 @@ function Header() {
           </a>
 
           {/* Desktop Nav Links with Sliding Active Pill */}
-          <div className="hidden items-center gap-1.5 md:flex" role="navigation" aria-label="Primary desktop">
+          <div
+            className="hidden items-center gap-1.5 md:flex"
+            role="navigation"
+            aria-label="Primary desktop"
+          >
             {navLinks.map(([label, href, sectionId]) => {
               const isActive = activeSection === sectionId;
               return (
@@ -467,7 +472,11 @@ function Header() {
               exit="hidden"
               className="overflow-hidden rounded-xl border-t border-white/10 pt-2 md:hidden"
             >
-              <div className="grid gap-2 py-4" role="navigation" aria-label="Primary mobile">
+              <div
+                className="grid gap-2 py-4"
+                role="navigation"
+                aria-label="Primary mobile"
+              >
                 {navLinks.map(([label, href, sectionId]) => {
                   const isActive = activeSection === sectionId;
                   return (
@@ -831,7 +840,11 @@ function Method() {
           </p>
 
           {/* Brutalist Hard-Shadow Active Pills */}
-          <div className="mt-8 flex flex-wrap gap-2.5" role="tablist" aria-label="Filter experience by category">
+          <div
+            className="mt-8 flex flex-wrap gap-2.5"
+            role="tablist"
+            aria-label="Filter experience by category"
+          >
             {expCategories.map((category) => {
               const isActive = activeExpCategory === category;
               return (
@@ -1047,6 +1060,9 @@ export default function App() {
       <Header />
       <main id="main-content" tabIndex={-1} className="outline-none">
         <Hero />
+        <section className="relative w-full overflow-hidden bg-ink py-12 border-y border-white/10">
+          <MacbookScroll src="/img/stealthforce.webp" showGradient={false} />
+        </section>
         <Work />
         <Method />
         <Contact />
