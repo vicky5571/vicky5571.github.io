@@ -76,13 +76,37 @@ export function MacbookScroll({
 
   const scaleX = useTransform(
     smoothProgress,
-    [0, isDesktop ? 0.45 : isTabletPortrait ? 0.5 : isTabletLandscape ? 0.48 : 0.48],
-    [1.15, isDesktop ? 1.45 : isTabletPortrait ? 1.2 : isTabletLandscape ? 1.25 : 1],
+    [
+      0,
+      isDesktop
+        ? 0.45
+        : isTabletPortrait
+          ? 0.5
+          : isTabletLandscape
+            ? 0.48
+            : 0.48,
+    ],
+    [
+      1.15,
+      isDesktop ? 1.45 : isTabletPortrait ? 1.2 : isTabletLandscape ? 1.25 : 1,
+    ],
   );
   const scaleY = useTransform(
     smoothProgress,
-    [0, isDesktop ? 0.45 : isTabletPortrait ? 0.5 : isTabletLandscape ? 0.48 : 0.48],
-    [0.65, isDesktop ? 1.45 : isTabletPortrait ? 1.2 : isTabletLandscape ? 1.25 : 1],
+    [
+      0,
+      isDesktop
+        ? 0.45
+        : isTabletPortrait
+          ? 0.5
+          : isTabletLandscape
+            ? 0.48
+            : 0.48,
+    ],
+    [
+      0.65,
+      isDesktop ? 1.45 : isTabletPortrait ? 1.2 : isTabletLandscape ? 1.25 : 1,
+    ],
   );
   const translate = useTransform(
     smoothProgress,
@@ -103,18 +127,52 @@ export function MacbookScroll({
   );
   const rotate = useTransform(
     smoothProgress,
-    [0.02, isDesktop ? 0.45 : isTabletPortrait ? 0.5 : isTabletLandscape ? 0.48 : 0.48],
+    [
+      0.02,
+      isDesktop
+        ? 0.45
+        : isTabletPortrait
+          ? 0.5
+          : isTabletLandscape
+            ? 0.48
+            : 0.48,
+    ],
     [-28, 0],
   );
   const textTransform = useTransform(
     smoothProgress,
-    [0, isDesktop ? 0.32 : isTabletPortrait ? 0.35 : isTabletLandscape ? 0.34 : 0.35],
+    [
+      0,
+      isDesktop
+        ? 0.32
+        : isTabletPortrait
+          ? 0.35
+          : isTabletLandscape
+            ? 0.34
+            : 0.35,
+    ],
     [0, 80],
   );
   const textOpacity = useTransform(
     smoothProgress,
-    [0, isDesktop ? 0.24 : isTabletPortrait ? 0.25 : isTabletLandscape ? 0.25 : 0.25],
+    [
+      0,
+      isDesktop
+        ? 0.24
+        : isTabletPortrait
+          ? 0.25
+          : isTabletLandscape
+            ? 0.25
+            : 0.25,
+    ],
     [1, 0],
+  );
+
+  // Gradual ambient glow that blooms as the screen opens and powers on
+  const glowOpacity = useTransform(
+    smoothProgress,
+    [0.08, 0.48, 0.88, 1],
+    [0, 1, 1, 0.2],
   );
 
   return (
@@ -148,6 +206,7 @@ export function MacbookScroll({
         scaleY={scaleY}
         rotate={rotate}
         translate={translate}
+        glowOpacity={glowOpacity}
       />
 
       {/* Base area */}
@@ -178,7 +237,7 @@ export function MacbookScroll({
   );
 }
 
-export function Lid({ scaleX, scaleY, rotate, translate, src }) {
+export function Lid({ scaleX, scaleY, rotate, translate, glowOpacity, src }) {
   return (
     <div className="relative [perspective:800px]">
       <div
@@ -210,12 +269,26 @@ export function Lid({ scaleX, scaleY, rotate, translate, src }) {
         }}
         className="absolute inset-0 h-96 w-[32rem] rounded-2xl bg-[#010101] p-2 shadow-2xl [transform:translateZ(0)]"
       >
+        {/* Gradual Ambient Halo Glow behind & around the screen */}
+        <m.div
+          style={{ opacity: glowOpacity }}
+          className="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-r from-white/30 via-white/45 to-white/30 blur-2xl"
+          aria-hidden="true"
+        />
+
         <div className="absolute inset-0 rounded-lg bg-[#141416]" />
         <img
           src={src}
           alt="Macbook display preview"
           decoding="async"
           className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top [transform:translateZ(0)]"
+        />
+
+        {/* Gradual Screen Surface Edge Bloom & Inner Radiance */}
+        <m.div
+          style={{ opacity: glowOpacity }}
+          className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-inset ring-white/40 shadow-[inset_0_0_24px_rgba(255,255,255,0.2),0_0_35px_rgba(255,255,255,0.35)]"
+          aria-hidden="true"
         />
       </m.div>
     </div>
