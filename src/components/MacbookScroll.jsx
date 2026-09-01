@@ -42,28 +42,80 @@ export function MacbookScroll({
     mass: 0.1,
   });
 
-  const [isMobile, setIsMobile] = useState(false);
+  // Tiered viewport support: "mobile", "tablet-portrait", "tablet-landscape", "desktop"
+  const [deviceTier, setDeviceTier] = useState("desktop");
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      setIsMobile(true);
-    }
+    const updateDeviceTier = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const isPortrait = h >= w;
+
+      if (w < 640) {
+        setDeviceTier("mobile");
+      } else if (w <= 1024 && isPortrait) {
+        setDeviceTier("tablet-portrait");
+      } else if (w < 1024) {
+        setDeviceTier("tablet-landscape");
+      } else {
+        setDeviceTier("desktop");
+      }
+    };
+    updateDeviceTier();
+    window.addEventListener("resize", updateDeviceTier);
+    window.addEventListener("orientationchange", updateDeviceTier);
+    return () => {
+      window.removeEventListener("resize", updateDeviceTier);
+      window.removeEventListener("orientationchange", updateDeviceTier);
+    };
   }, []);
+
+  const isDesktop = deviceTier === "desktop";
+  const isTabletPortrait = deviceTier === "tablet-portrait";
+  const isTabletLandscape = deviceTier === "tablet-landscape";
 
   const scaleX = useTransform(
     smoothProgress,
-    [0, 0.32],
-    [1.15, isMobile ? 1 : 1.45],
+    [0, isDesktop ? 0.45 : isTabletPortrait ? 0.5 : isTabletLandscape ? 0.48 : 0.48],
+    [1.15, isDesktop ? 1.45 : isTabletPortrait ? 1.2 : isTabletLandscape ? 1.25 : 1],
   );
   const scaleY = useTransform(
     smoothProgress,
-    [0, 0.32],
-    [0.65, isMobile ? 1 : 1.45],
+    [0, isDesktop ? 0.45 : isTabletPortrait ? 0.5 : isTabletLandscape ? 0.48 : 0.48],
+    [0.65, isDesktop ? 1.45 : isTabletPortrait ? 1.2 : isTabletLandscape ? 1.25 : 1],
   );
-  const translate = useTransform(smoothProgress, [0, 1], [0, 1100]);
-  const rotate = useTransform(smoothProgress, [0.02, 0.32], [-28, 0]);
-  const textTransform = useTransform(smoothProgress, [0, 0.28], [0, 80]);
-  const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
+  const translate = useTransform(
+    smoothProgress,
+    isDesktop
+      ? [0, 0.45, 0.9, 1]
+      : isTabletPortrait
+        ? [0, 0.5, 0.92, 1]
+        : isTabletLandscape
+          ? [0, 0.48, 0.92, 1]
+          : [0, 0.48, 0.9, 1],
+    isDesktop
+      ? [0, 600, 1550, 1850]
+      : isTabletPortrait
+        ? [0, 1200, 3600, 4200]
+        : isTabletLandscape
+          ? [0, 1100, 3100, 3600]
+          : [0, 1200, 2900, 3400],
+  );
+  const rotate = useTransform(
+    smoothProgress,
+    [0.02, isDesktop ? 0.45 : isTabletPortrait ? 0.5 : isTabletLandscape ? 0.48 : 0.48],
+    [-28, 0],
+  );
+  const textTransform = useTransform(
+    smoothProgress,
+    [0, isDesktop ? 0.32 : isTabletPortrait ? 0.35 : isTabletLandscape ? 0.34 : 0.35],
+    [0, 80],
+  );
+  const textOpacity = useTransform(
+    smoothProgress,
+    [0, isDesktop ? 0.24 : isTabletPortrait ? 0.25 : isTabletLandscape ? 0.25 : 0.25],
+    [1, 0],
+  );
 
   return (
     <div
