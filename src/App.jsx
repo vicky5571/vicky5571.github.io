@@ -21,6 +21,7 @@ import {
   ArrowUp,
 } from "lucide-react";
 import { MacbookScroll } from "./components/MacbookScroll";
+import { MimoHero } from "./components/MimoHero";
 
 const projects = [
   {
@@ -513,113 +514,6 @@ function Header() {
   );
 }
 
-function HeroPoster() {
-  return (
-    <div className="hero-poster" aria-hidden="true">
-      <div className="poster-frame poster-frame-one" />
-      <div className="poster-frame poster-frame-two" />
-      <div className="poster-mark poster-mark-a" />
-      <div className="poster-mark poster-mark-b" />
-      <div className="poster-noise" />
-    </div>
-  );
-}
-
-function Hero() {
-  const shouldReduceMotion = useReducedMotion();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: shouldReduceMotion ? 0 : 0.12,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 280, damping: 24 },
-    },
-  };
-
-  return (
-    <section
-      id="top"
-      className="relative min-h-[100svh] overflow-hidden bg-ink text-milk"
-    >
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,16,15,0.98)_0%,rgba(16,16,15,0.86)_45%,rgba(16,16,15,0.36)_100%)]" />
-      <HeroPoster />
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-4 pb-7 pt-28 sm:px-6 lg:px-8 lg:pb-10">
-        <m.div
-          className="max-w-5xl"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <m.h1
-            variants={itemVariants}
-            className="max-w-6xl text-balance text-[clamp(2.75rem,11vw,9.7rem)] font-black uppercase leading-[0.82] tracking-normal sm:text-[clamp(3.2rem,12vw,9.7rem)] sm:leading-[0.79]"
-          >
-            Engineering scalable web products.
-          </m.h1>
-
-          <m.div
-            variants={itemVariants}
-            className="mt-6 grid gap-5 md:grid-cols-[0.9fr_1fr] md:items-end"
-          >
-            <p className="max-w-xl text-base leading-7 text-milk/80 md:text-xl md:leading-8">
-              I'm Vicky Galih Pamungkas, a Full Stack Web Developer passionate
-              about building robust, high-impact digital applications through
-              scalable backend systems, clean database architecture, and
-              performant front-end engineering.
-            </p>
-            <div className="flex flex-wrap gap-3 md:justify-end">
-              <m.a
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                href="https://drive.google.com/file/d/1M8Tze7CDaDFWaORncTuWwVnmo6Exxxtk/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-acid px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-milk hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
-              >
-                Curriculum Vitae <ArrowUpRight size={17} />
-              </m.a>
-            </div>
-          </m.div>
-        </m.div>
-
-        <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="mt-10 grid border-y border-white/10 text-sm text-milk/75 sm:grid-cols-3"
-        >
-          {[
-            "Full Stack Architecture",
-            "Scalable Backend & APIs",
-            "Modern Front-End Engineering",
-          ].map((item) => (
-            <div
-              key={item}
-              className="flex items-center gap-3 border-white/10 py-4 sm:border-r sm:px-5 last:sm:border-r-0"
-            >
-              <CircleDot size={15} className="text-acid" />
-              {item}
-            </div>
-          ))}
-        </m.div>
-      </div>
-    </section>
-  );
-}
-
 function Work() {
   const [activeCategory, setActiveCategory] = useState("All");
   const shouldReduceMotion = useReducedMotion();
@@ -1059,7 +953,7 @@ export default function App() {
       </a>
       <Header />
       <main id="main-content" tabIndex={-1} className="outline-none">
-        <Hero />
+        <MimoHero />
         <section className="relative w-full overflow-hidden bg-ink py-12 border-y border-white/10">
           <MacbookScroll src="/img/stealthforce.webp" showGradient={false} />
         </section>

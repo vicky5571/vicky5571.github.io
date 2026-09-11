@@ -399,3 +399,346 @@ canvas {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================================
+   Xiaomi MiMo Coder Waterpaint Drop Mask & Hero Styles (Dark Portfolio Theme)
+   ========================================================================== */
+
+:root {
+  --mimo-bg: #10100f;
+  --mimo-ink: #f5f1e8;
+  --mimo-ink-soft: rgba(245, 241, 232, 0.72);
+  --mimo-border: rgba(255, 255, 255, 0.12);
+  --mimo-chip-bg: rgba(255, 255, 255, 0.05);
+  --mimo-acid: #d5ff3f;
+}
+
+.coder-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: #10100f;
+  color: var(--mimo-ink);
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.coder-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/img/vicky.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 280ms ease-out;
+  -webkit-mask-image: radial-gradient(
+    ellipse 58% 54% at 50% 48%,
+    #000000 18%,
+    rgba(0, 0, 0, 0.8) 34%,
+    rgba(0, 0, 0, 0.28) 54%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  mask-image: radial-gradient(
+    ellipse 58% 54% at 50% 48%,
+    #000000 18%,
+    rgba(0, 0, 0, 0.8) 34%,
+    rgba(0, 0, 0, 0.28) 54%,
+    rgba(0, 0, 0, 0) 72%
+  );
+}
+
+.coder-hero.is-ready .coder-hero__bg {
+  opacity: 1;
+}
+
+/* MacBook Section (#10100f) expanded feathered perimeter vignette matching mimo-coder-bg.png */
+.coder-hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 62% 58% at 50% 48%,
+      transparent 16%,
+      rgba(16, 16, 15, 0.45) 36%,
+      rgba(16, 16, 15, 0.9) 56%,
+      #10100f 74%
+    ),
+    linear-gradient(to bottom, #10100f 0%, transparent 18%, transparent 82%, #10100f 100%),
+    linear-gradient(to right, #10100f 0%, transparent 20%, transparent 80%, #10100f 100%);
+  pointer-events: none;
+}
+
+/* The reveal mask — canvas of solid #10100f that the cursor erases with organic waterpaint drops */
+.coder-hero__mask {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+}
+
+.coder-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.coder-hero__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.coder-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(213, 255, 63, 0.08);
+  border: 1px solid rgba(213, 255, 63, 0.28);
+  color: var(--mimo-acid);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.coder-hero__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background-color: var(--mimo-acid);
+  box-shadow: 0 0 10px var(--mimo-acid);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+.coder-hero__title {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--mimo-ink);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+}
+
+.coder-hero__subtitle {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 1.65;
+  color: var(--mimo-ink-soft);
+  max-width: 800px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* Typewriter character reveal */
+.coder-hero__subtitle .char {
+  display: none;
+}
+.coder-hero__subtitle .char.is-typed {
+  display: inline;
+}
+.coder-hero__subtitle .type-caret {
+  display: inline-block;
+  width: 2.5px;
+  height: 1.15em;
+  margin-left: 3px;
+  background: var(--mimo-acid);
+  box-shadow: 0 0 8px var(--mimo-acid);
+  vertical-align: -0.18em;
+  animation: sub-caret 0.75s step-end infinite;
+}
+.coder-hero__subtitle.is-done .type-caret {
+  animation: none;
+  opacity: 0;
+}
+@keyframes sub-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Role / Platform Switch Pills */
+.coder-platform-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.coder-platform-switch__option {
+  padding: 8px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: rgba(245, 241, 232, 0.62);
+  cursor: pointer;
+  transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.coder-platform-switch__option:hover {
+  color: var(--mimo-ink);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.coder-platform-switch__option.is-active {
+  background: var(--mimo-acid);
+  color: #10100f;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(213, 255, 63, 0.35);
+}
+
+/* Terminal Command Box */
+.coder-terminal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 580px;
+  max-width: 100%;
+  height: 54px;
+  padding: 0 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: var(--mimo-ink);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 280ms ease;
+}
+
+.coder-hero:hover .coder-terminal {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(213, 255, 63, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(213, 255, 63, 0.15);
+}
+
+.coder-terminal__cmd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.coder-terminal__prompt {
+  color: var(--mimo-acid);
+  font-weight: 700;
+}
+
+.coder-terminal__copy {
+  background: transparent;
+  border: none;
+  padding: 7px;
+  color: rgba(245, 241, 232, 0.65);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 180ms ease;
+}
+
+.coder-terminal__copy:hover {
+  color: var(--mimo-acid);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Action Buttons */
+.coder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.coder-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.coder-btn--primary {
+  background: var(--mimo-acid);
+  color: #10100f;
+  border: 1px solid var(--mimo-acid);
+  box-shadow: 0 0 20px rgba(213, 255, 63, 0.25);
+}
+
+.coder-btn--primary:hover {
+  background: #ffffff;
+  color: #10100f;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(213, 255, 63, 0.45);
+}
+
+.coder-btn--secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--mimo-ink);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.coder-btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--mimo-acid);
+  color: var(--mimo-acid);
+  transform: translateY(-2px);
+}
+
+
+
