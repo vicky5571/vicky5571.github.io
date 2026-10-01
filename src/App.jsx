@@ -33,7 +33,7 @@ const projects = [
     image: "/img/stealthforce.webp",
     width: 1600,
     height: 829,
-    link: "https://ecommerce-sanity-build-bewn7zdp2-vicky-galih-pamungas-projects.vercel.app/",
+    link: "https://ecommerce-sanity-build-ten.vercel.app/",
     stack: [
       "Next.js",
       "React",
@@ -368,11 +368,10 @@ function Header() {
           paddingLeft: navPaddingX,
           paddingRight: navPaddingX,
         }}
-        className={`relative pointer-events-auto border backdrop-blur-2xl transition-[border-radius,padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isScrolled || isMenuOpen
+        className={`relative pointer-events-auto border backdrop-blur-2xl transition-[border-radius,padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled || isMenuOpen
             ? "border-white/20 bg-ink/95 shadow-[0_16px_40px_rgba(0,0,0,0.7)]"
             : "border-white/10 bg-ink/80 border-t-0 border-x-0"
-        }`}
+          }`}
       >
         <m.nav
           aria-label="Primary"
@@ -406,9 +405,8 @@ function Header() {
                   href={href}
                   onClick={(e) => scrollToSection(e, href)}
                   aria-current={isActive ? "page" : undefined}
-                  className={`relative px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
-                    isActive ? "text-acid" : "text-milk/75 hover:text-milk"
-                  }`}
+                  className={`relative px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${isActive ? "text-acid" : "text-milk/75 hover:text-milk"
+                    }`}
                 >
                   {isActive && (
                     <m.div
@@ -433,11 +431,10 @@ function Header() {
               onClick={(e) => scrollToSection(e, "#contact")}
               whileHover={{ scale: 1.04 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className={`inline-flex items-center gap-2 rounded-full border text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
-                isScrolled
+              className={`inline-flex items-center gap-2 rounded-full border text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${isScrolled
                   ? "bg-acid px-3.5 py-1.5 text-ink hover:bg-milk hover:text-ink border-transparent"
                   : "border-milk/20 px-4 py-2 text-milk hover:border-acid hover:text-acid"
-              }`}
+                }`}
             >
               Let's Connect <ArrowUpRight size={14} />
             </m.a>
@@ -488,11 +485,10 @@ function Header() {
                       href={href}
                       onClick={(e) => scrollToSection(e, href)}
                       aria-current={isActive ? "page" : undefined}
-                      className={`border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
-                        isActive
+                      className={`border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${isActive
                           ? "border-acid bg-acid/10 text-acid font-black"
                           : "border-white/10 text-milk/80 hover:border-acid hover:text-acid"
-                      }`}
+                        }`}
                     >
                       {label}
                     </m.a>
@@ -558,9 +554,8 @@ function Work() {
                 aria-controls="work-panel"
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`relative py-3 pb-4 text-xs font-black uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
-                  isActive ? "text-ink" : "text-ink/45 hover:text-ink"
-                }`}
+                className={`relative py-3 pb-4 text-xs font-black uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink ${isActive ? "text-ink" : "text-ink/45 hover:text-ink"
+                  }`}
               >
                 <span>{cat}</span>
                 {isActive && (
@@ -606,13 +601,13 @@ function Work() {
                   shouldReduceMotion
                     ? {}
                     : {
-                        y: -8,
-                        transition: {
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 25,
-                        },
-                      }
+                      y: -8,
+                      transition: {
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                      },
+                    }
                 }
                 className="group flex flex-col justify-between overflow-hidden border border-ink/15 bg-ink text-milk shadow-md transition-shadow hover:shadow-2xl"
               >
@@ -638,8 +633,7 @@ function Work() {
                       aria-hidden="true"
                     />
                     <span
-                      className={`project-index absolute left-4 top-4 select-none text-milk drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-all duration-300 ${
-                        [
+                      className={`project-index absolute left-4 top-4 select-none text-milk drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-all duration-300 ${[
                           "group-hover:text-acid group-hover:drop-shadow-[0_0_14px_rgba(213,255,63,0.65)]",
                           "group-hover:text-cyan group-hover:drop-shadow-[0_0_14px_rgba(54,215,255,0.65)]",
                           "group-hover:text-flame group-hover:drop-shadow-[0_0_14px_rgba(255,94,58,0.65)]",
@@ -648,7 +642,7 @@ function Work() {
                           "group-hover:text-acid group-hover:drop-shadow-[0_0_14px_rgba(213,255,63,0.65)]",
                           "group-hover:text-flame group-hover:drop-shadow-[0_0_14px_rgba(255,94,58,0.65)]",
                         ][index % 7]
-                      }`}
+                        }`}
                     >
                       0{index + 1}
                     </span>
@@ -746,11 +740,10 @@ function Method() {
                   aria-controls="experience-panel"
                   type="button"
                   onClick={() => setActiveExpCategory(category)}
-                  className={`relative px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${
-                    isActive
+                  className={`relative px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${isActive
                       ? "text-ink"
                       : "border border-white/15 bg-white/[0.02] text-milk/70 hover:border-acid/60 hover:text-milk"
-                  }`}
+                    }`}
                 >
                   {isActive && (
                     <m.div
