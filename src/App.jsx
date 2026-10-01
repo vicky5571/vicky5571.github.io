@@ -31,8 +31,8 @@ const projects = [
     year: "2025",
     tone: "acid",
     image: "/img/stealthforce.webp",
-    width: 1600,
-    height: 829,
+    width: 1920,
+    height: 1080,
     link: "https://ecommerce-sanity-build-ten.vercel.app/",
     stack: [
       "Next.js",
