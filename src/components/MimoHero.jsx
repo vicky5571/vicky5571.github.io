@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import {
+  getBezierPoint,
+  generateRandomStroke,
+  generateRandomBloom,
+} from "../lib/hoverMotion.js";
 
 export function MimoHero() {
   const heroRef = useRef(null);
   const canvasRef = useRef(null);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [hasNoMouse, setHasNoMouse] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
   // Exact Xiaomi MiMo Waterpaint Drop Canvas Algorithm
@@ -168,6 +174,142 @@ export function MimoHero() {
       }
     }
 
+    // Device pointer capability detection (mouse vs touch/no-mouse)
+    const pointerMedia = window.matchMedia("(hover: hover) and (pointer: fine)");
+    let activeNoMouse = !pointerMedia.matches;
+    setHasNoMouse(activeNoMouse);
+
+    const handlePointerChange = (e) => {
+      activeNoMouse = !e.matches;
+      setHasNoMouse(activeNoMouse);
+      if (activeNoMouse) {
+        scheduleNextAutonomousHover(1500);
+      }
+    };
+    if (typeof pointerMedia.addEventListener === "function") {
+      pointerMedia.addEventListener("change", handlePointerChange);
+    } else if (typeof pointerMedia.addListener === "function") {
+      pointerMedia.addListener(handlePointerChange);
+    }
+
+    // Viewport & Visibility tracking for power & battery efficiency
+    let isHeroInView = true;
+    let isPageVisible = typeof document !== "undefined" ? !document.hidden : true;
+    let lastUserActionTime = 0;
+
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isHeroInView = entry?.isIntersecting ?? true;
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(hero);
+
+    // Autonomous Hovering Simulation for devices without a mouse
+    let autoHoverTimeoutId = null;
+    let autoStrokeRafId = null;
+
+    function scheduleNextAutonomousHover(delay = 1800) {
+      if (autoHoverTimeoutId) clearTimeout(autoHoverTimeoutId);
+      autoHoverTimeoutId = setTimeout(() => {
+        runAutonomousHover();
+      }, delay);
+    }
+
+    function runAutonomousHover() {
+      // Honor reduced motion accessibility preference
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      // Guard conditions: must lack a mouse, be visible on-screen, and document active
+      if (!activeNoMouse || !isHeroInView || !isPageVisible) {
+        scheduleNextAutonomousHover(2500);
+        return;
+      }
+
+      // Yield if user has touched or interacted recently
+      const timeSinceUser = performance.now() - lastUserActionTime;
+      if (timeSinceUser < 4000) {
+        scheduleNextAutonomousHover(Math.max(1000, 4500 - timeSinceUser));
+        return;
+      }
+
+      const rect = hero.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) {
+        scheduleNextAutonomousHover(2000);
+        return;
+      }
+
+      // Organic gesture selection: 75% curved fluid stroke, 25% soft ambient bloom
+      const isBloom = Math.random() < 0.25;
+
+      if (isBloom) {
+        const bloom = generateRandomBloom(rect.width, rect.height);
+        addStamp(bloom.x, bloom.y, bloom.lifetime, bloom.radius, true);
+        startLoop();
+        scheduleNextAutonomousHover(2000 + Math.random() * 1400);
+      } else {
+        const stroke = generateRandomStroke(rect.width, rect.height);
+        const startTime = performance.now();
+        let strokeLastX = null;
+        let strokeLastY = null;
+
+        function stepStroke(now) {
+          if (
+            !activeNoMouse ||
+            !isHeroInView ||
+            !isPageVisible ||
+            performance.now() - lastUserActionTime < 3000
+          ) {
+            strokeLastX = null;
+            strokeLastY = null;
+            scheduleNextAutonomousHover(2500);
+            return;
+          }
+
+          const elapsed = now - startTime;
+          const progress = Math.min(1, elapsed / stroke.duration);
+          // Ease in-out pacing for natural stylus/cursor deceleration
+          const eased = 0.5 - 0.5 * Math.cos(progress * Math.PI);
+          const pt = getBezierPoint(stroke.p0, stroke.p1, stroke.p2, eased);
+
+          if (strokeLastX === null) {
+            addStamp(pt.x, pt.y);
+          } else {
+            const dx = pt.x - strokeLastX;
+            const dy = pt.y - strokeLastY;
+            const dist = Math.hypot(dx, dy);
+            const steps = Math.max(1, Math.ceil(dist / STAMP_STEP));
+            for (let i = 1; i <= steps; i++) {
+              addStamp(
+                strokeLastX + (dx * i) / steps,
+                strokeLastY + (dy * i) / steps
+              );
+            }
+          }
+          strokeLastX = pt.x;
+          strokeLastY = pt.y;
+          startLoop();
+
+          if (progress < 1) {
+            autoStrokeRafId = requestAnimationFrame(stepStroke);
+          } else {
+            strokeLastX = null;
+            strokeLastY = null;
+            scheduleNextAutonomousHover(1800 + Math.random() * 1500);
+          }
+        }
+
+        autoStrokeRafId = requestAnimationFrame(stepStroke);
+      }
+    }
+
     // Auto-bloom teaser sequence on load (Option 2)
     const teaserTimer = setTimeout(() => {
       const rect = hero.getBoundingClientRect();
@@ -182,10 +324,16 @@ export function MimoHero() {
       addStamp(cx - 10, cy - 36, 1700, 175, true);
 
       startLoop();
+
+      // Begin autonomous hover simulation cycle on no-mouse devices
+      if (activeNoMouse) {
+        scheduleNextAutonomousHover(2600);
+      }
     }, 400);
 
     const handleMouseEnter = (e) => {
       setHasInteracted(true);
+      lastUserActionTime = performance.now();
       const rect = hero.getBoundingClientRect();
       lastX = e.clientX - rect.left;
       lastY = e.clientY - rect.top;
@@ -195,6 +343,7 @@ export function MimoHero() {
 
     const handleMouseMove = (e) => {
       setHasInteracted(true);
+      lastUserActionTime = performance.now();
       const rect = hero.getBoundingClientRect();
       stampAlong(e.clientX - rect.left, e.clientY - rect.top);
       startLoop();
@@ -205,16 +354,59 @@ export function MimoHero() {
       lastY = null;
     };
 
+    const handleTouchStart = (e) => {
+      setHasInteracted(true);
+      lastUserActionTime = performance.now();
+      if (!e.touches || e.touches.length === 0) return;
+      const rect = hero.getBoundingClientRect();
+      const touch = e.touches[0];
+      lastX = touch.clientX - rect.left;
+      lastY = touch.clientY - rect.top;
+      stampAlong(lastX, lastY);
+      startLoop();
+    };
+
+    const handleTouchMove = (e) => {
+      setHasInteracted(true);
+      lastUserActionTime = performance.now();
+      if (!e.touches || e.touches.length === 0) return;
+      const rect = hero.getBoundingClientRect();
+      const touch = e.touches[0];
+      stampAlong(touch.clientX - rect.left, touch.clientY - rect.top);
+      startLoop();
+    };
+
+    const handleTouchEnd = () => {
+      lastX = null;
+      lastY = null;
+      lastUserActionTime = performance.now();
+    };
+
     hero.addEventListener("mouseenter", handleMouseEnter);
     hero.addEventListener("mousemove", handleMouseMove);
     hero.addEventListener("mouseleave", handleMouseLeave);
+    hero.addEventListener("touchstart", handleTouchStart, { passive: true });
+    hero.addEventListener("touchmove", handleTouchMove, { passive: true });
+    hero.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       clearTimeout(teaserTimer);
+      clearTimeout(autoHoverTimeoutId);
+      if (autoStrokeRafId) cancelAnimationFrame(autoStrokeRafId);
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (typeof pointerMedia.removeEventListener === "function") {
+        pointerMedia.removeEventListener("change", handlePointerChange);
+      } else if (typeof pointerMedia.removeListener === "function") {
+        pointerMedia.removeListener(handlePointerChange);
+      }
       window.removeEventListener("resize", resize);
       hero.removeEventListener("mouseenter", handleMouseEnter);
       hero.removeEventListener("mousemove", handleMouseMove);
       hero.removeEventListener("mouseleave", handleMouseLeave);
+      hero.removeEventListener("touchstart", handleTouchStart);
+      hero.removeEventListener("touchmove", handleTouchMove);
+      hero.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
@@ -293,7 +485,7 @@ export function MimoHero() {
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-acid" />
           </span>
           <span className="font-mono text-xs sm:text-sm font-black uppercase tracking-[0.22em] text-acid">
-            Brush canvas to illuminate
+            {hasNoMouse ? "Touch canvas to illuminate" : "Brush canvas to illuminate"}
           </span>
         </div>
       </div>
