@@ -26,6 +26,30 @@ import { TechBadge } from "./components/TechBadge";
 
 const projects = [
   {
+    name: "Learning Management System Indosat Ooredoo Hutchison",
+    type: "Full Stack",
+    year: "2026",
+    tone: "acid",
+    image: "/img/learning-management-system-ioh.webp",
+    width: 1920,
+    height: 1080,
+    link: null,
+    stack: ["Next.js", "React", "Tailwind"],
+    copy: "Enterprise learning management system engineered for technical capability building, digital training programs, and talent development at Indosat Ooredoo Hutchison.",
+  },
+  {
+    name: "Apply IOH Industry Academia Collaboration Program",
+    type: "Full Stack",
+    year: "2026",
+    tone: "acid",
+    image: "/img/apply-ioh-industry-academia-collaboration-program.webp",
+    width: 1920,
+    height: 989,
+    link: null,
+    stack: ["Next.js", "React", "Tailwind"],
+    copy: "Digital platform engineered to facilitate university partnerships, student admissions, and evaluation workflows for the IOH Industry Academia Collaboration Program.",
+  },
+  {
     name: "StealthForce E-commerce",
     type: "Full Stack",
     year: "2025",
@@ -671,19 +695,26 @@ function Work() {
                 </div>
 
                 <div className="p-6 pt-0">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Explore ${project.name} (opens in a new tab)`}
-                    className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-acid transition-all duration-200 hover:text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
-                  >
-                    <span>Explore Project</span>
-                    <ArrowUpRight
-                      size={16}
-                      className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                    />
-                  </a>
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Explore ${project.name} (opens in a new tab)`}
+                      className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-acid transition-all duration-200 hover:text-milk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
+                    >
+                      <span>Explore Project</span>
+                      <ArrowUpRight
+                        size={16}
+                        className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                      />
+                    </a>
+                  ) : (
+                    <div className="inline-flex items-center gap-2 py-0.5 text-xs font-bold uppercase tracking-[0.18em] text-milk/40 select-none">
+                      <span className="h-1.5 w-1.5 rounded-full bg-milk/30" aria-hidden="true" />
+                      <span>Demo Not Available</span>
+                    </div>
+                  )}
                 </div>
               </m.article>
             ))}
