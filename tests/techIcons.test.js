@@ -15,6 +15,15 @@ const ALL_PROJECT_TAGS = [
   "PostCSS",
   "JavaScript",
   "Supabase",
+  "PHP",
+  "Laravel",
+  "Inertia.js v2",
+  "CodeIgniter 4",
+  "MariaDB",
+  "MySQL",
+  "Transactional Email (SMTP)",
+  "Shadcn",
+  "framer-motion",
   "Figma",
   "Prototype",
   "User Research",
@@ -40,6 +49,12 @@ describe("Tech Stack Icon Mapping", () => {
     assert.equal(getTechIcon("react"), getTechIcon("React"));
     assert.equal(getTechIcon(" typescript "), getTechIcon("Typescript"));
     assert.equal(getTechIcon("next.js"), getTechIcon("Next.js"));
+    assert.equal(getTechIcon(" php "), getTechIcon("PHP"));
+    assert.equal(getTechIcon("codeigniter 4"), getTechIcon("CodeIgniter 4"));
+    assert.equal(getTechIcon("mariadb"), getTechIcon("MariaDB"));
+    assert.equal(getTechIcon("laravel"), getTechIcon("Laravel"));
+    assert.equal(getTechIcon("inertia.js v2"), getTechIcon("Inertia.js v2"));
+    assert.equal(getTechIcon("mysql"), getTechIcon("MySQL"));
   });
 
   it("should return a fallback icon for unknown technologies", () => {
@@ -65,6 +80,14 @@ describe("Tech Stack Brand Color Mapping", () => {
     assert.equal(getTechBrandColor("Tailwind").toLowerCase(), "#38bdf8");
     assert.equal(getTechBrandColor("JavaScript").toLowerCase(), "#f7df1e");
     assert.equal(getTechBrandColor("Supabase").toLowerCase(), "#3ecf8e");
+    assert.equal(getTechBrandColor("PHP").toLowerCase(), "#777bb4");
+    assert.equal(getTechBrandColor("Laravel").toLowerCase(), "#ff2d20");
+    assert.equal(getTechBrandColor("Inertia.js v2").toLowerCase(), "#9553e9");
+    assert.equal(getTechBrandColor("CodeIgniter 4").toLowerCase(), "#ee4623");
+    assert.equal(getTechBrandColor("MariaDB").toLowerCase(), "#c0765a");
+    assert.equal(getTechBrandColor("MySQL").toLowerCase(), "#4479a1");
+    assert.equal(getTechBrandColor("Transactional Email (SMTP)").toLowerCase(), "#38bdf8");
+    assert.equal(getTechBrandColor("Shadcn").toLowerCase(), "#ffffff");
   });
 
   it("should return fallback theme color for unknown tags", () => {

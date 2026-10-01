@@ -34,8 +34,17 @@ const projects = [
     width: 1920,
     height: 1080,
     link: null,
-    stack: ["Next.js", "React", "Tailwind"],
-    copy: "Enterprise learning management system engineered for technical capability building, digital training programs, and talent development at Indosat Ooredoo Hutchison.",
+    stack: [
+      "Laravel",
+      "React",
+      "Inertia.js v2",
+      "Typescript",
+      "MySQL",
+      "Tailwind",
+      "Shadcn",
+      "framer-motion",
+    ],
+    copy: "Enterprise-grade LMS streamlining corporate training through multi-format course delivery, real-time employee progress tracking, interactive assessments, and automated, tamper-proof certificate issuance powered by Laravel and React",
   },
   {
     name: "Apply IOH Industry Academia Collaboration Program",
@@ -46,8 +55,8 @@ const projects = [
     width: 1920,
     height: 989,
     link: null,
-    stack: ["Next.js", "React", "Tailwind"],
-    copy: "Digital platform engineered to facilitate university partnerships, student admissions, and evaluation workflows for the IOH Industry Academia Collaboration Program.",
+    stack: ["PHP", "CodeIgniter 4", "MariaDB", "Transactional Email (SMTP)"],
+    copy: "Portal for Indosat Ooredoo Hutchison Central Java featuring automated candidate tracking, CV screening, dynamic document generation, and seamless email and WhatsApp notifications.",
   },
   {
     name: "StealthForce E-commerce",
@@ -393,8 +402,8 @@ function Header() {
           paddingRight: navPaddingX,
         }}
         className={`relative pointer-events-auto border backdrop-blur-2xl transition-[border-radius,padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled || isMenuOpen
-            ? "border-white/20 bg-ink/95 shadow-[0_16px_40px_rgba(0,0,0,0.7)]"
-            : "border-white/10 bg-ink/80 border-t-0 border-x-0"
+          ? "border-white/20 bg-ink/95 shadow-[0_16px_40px_rgba(0,0,0,0.7)]"
+          : "border-white/10 bg-ink/80 border-t-0 border-x-0"
           }`}
       >
         <m.nav
@@ -456,8 +465,8 @@ function Header() {
               whileHover={{ scale: 1.04 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className={`inline-flex items-center gap-2 rounded-full border text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${isScrolled
-                  ? "bg-acid px-3.5 py-1.5 text-ink hover:bg-milk hover:text-ink border-transparent"
-                  : "border-milk/20 px-4 py-2 text-milk hover:border-acid hover:text-acid"
+                ? "bg-acid px-3.5 py-1.5 text-ink hover:bg-milk hover:text-ink border-transparent"
+                : "border-milk/20 px-4 py-2 text-milk hover:border-acid hover:text-acid"
                 }`}
             >
               Let's Connect <ArrowUpRight size={14} />
@@ -510,8 +519,8 @@ function Header() {
                       onClick={(e) => scrollToSection(e, href)}
                       aria-current={isActive ? "page" : undefined}
                       className={`border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${isActive
-                          ? "border-acid bg-acid/10 text-acid font-black"
-                          : "border-white/10 text-milk/80 hover:border-acid hover:text-acid"
+                        ? "border-acid bg-acid/10 text-acid font-black"
+                        : "border-white/10 text-milk/80 hover:border-acid hover:text-acid"
                         }`}
                     >
                       {label}
@@ -658,14 +667,14 @@ function Work() {
                     />
                     <span
                       className={`project-index absolute left-4 top-4 select-none text-milk drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-all duration-300 ${[
-                          "group-hover:text-acid group-hover:drop-shadow-[0_0_14px_rgba(213,255,63,0.65)]",
-                          "group-hover:text-cyan group-hover:drop-shadow-[0_0_14px_rgba(54,215,255,0.65)]",
-                          "group-hover:text-flame group-hover:drop-shadow-[0_0_14px_rgba(255,94,58,0.65)]",
-                          "group-hover:text-plum group-hover:drop-shadow-[0_0_14px_rgba(122,92,255,0.65)]",
-                          "group-hover:text-cyan group-hover:drop-shadow-[0_0_14px_rgba(54,215,255,0.65)]",
-                          "group-hover:text-acid group-hover:drop-shadow-[0_0_14px_rgba(213,255,63,0.65)]",
-                          "group-hover:text-flame group-hover:drop-shadow-[0_0_14px_rgba(255,94,58,0.65)]",
-                        ][index % 7]
+                        "group-hover:text-acid group-hover:drop-shadow-[0_0_14px_rgba(213,255,63,0.65)]",
+                        "group-hover:text-cyan group-hover:drop-shadow-[0_0_14px_rgba(54,215,255,0.65)]",
+                        "group-hover:text-flame group-hover:drop-shadow-[0_0_14px_rgba(255,94,58,0.65)]",
+                        "group-hover:text-plum group-hover:drop-shadow-[0_0_14px_rgba(122,92,255,0.65)]",
+                        "group-hover:text-cyan group-hover:drop-shadow-[0_0_14px_rgba(54,215,255,0.65)]",
+                        "group-hover:text-acid group-hover:drop-shadow-[0_0_14px_rgba(213,255,63,0.65)]",
+                        "group-hover:text-flame group-hover:drop-shadow-[0_0_14px_rgba(255,94,58,0.65)]",
+                      ][index % 7]
                         }`}
                     >
                       0{index + 1}
@@ -772,8 +781,8 @@ function Method() {
                   type="button"
                   onClick={() => setActiveExpCategory(category)}
                   className={`relative px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid ${isActive
-                      ? "text-ink"
-                      : "border border-white/15 bg-white/[0.02] text-milk/70 hover:border-acid/60 hover:text-milk"
+                    ? "text-ink"
+                    : "border border-white/15 bg-white/[0.02] text-milk/70 hover:border-acid/60 hover:text-milk"
                     }`}
                 >
                   {isActive && (
