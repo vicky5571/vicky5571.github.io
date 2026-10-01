@@ -740,5 +740,24 @@ canvas {
   transform: translateY(-2px);
 }
 
+/* Tech Stack Badges: Idle monochrome milk, authentic brand color on hover */
+.tech-badge {
+  transition: border-color 200ms ease, background-color 200ms ease, transform 200ms ease;
+}
 
+.tech-badge__icon {
+  color: rgba(245, 241, 232, 0.6);
+  transition: color 220ms ease, filter 220ms ease;
+}
 
+.group:hover .tech-badge__icon,
+.tech-badge:hover .tech-badge__icon {
+  color: var(--badge-brand, #d5ff3f);
+  filter: drop-shadow(0 0 6px var(--badge-brand, #d5ff3f));
+}
+
+.tech-badge:hover {
+  border-color: var(--badge-brand, #d5ff3f) !important;
+  background-color: rgba(245, 241, 232, 0.12);
+  transform: translateY(-1px);
+}

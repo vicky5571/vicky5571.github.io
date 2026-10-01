@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { MacbookScroll } from "./components/MacbookScroll";
 import { MimoHero } from "./components/MimoHero";
+import { TechBadge } from "./components/TechBadge";
 
 const projects = [
   {
@@ -661,12 +662,7 @@ function Work() {
 
                     <div className="flex flex-wrap gap-1.5">
                       {project.stack.map((item) => (
-                        <span
-                          key={item}
-                          className="border border-milk/15 bg-milk/[0.06] px-2.5 py-1 text-[0.68rem] font-bold uppercase leading-none tracking-[0.14em] text-milk/80 transition-colors group-hover:border-acid/45 group-hover:text-acid"
-                        >
-                          {item}
-                        </span>
+                        <TechBadge key={item} name={item} />
                       ))}
                     </div>
 
