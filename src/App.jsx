@@ -26,7 +26,7 @@ import { TechBadge } from "./components/TechBadge";
 
 const projects = [
   {
-    name: "Learning Management System Indosat Ooredoo Hutchison",
+    name: "Learning Management System IOH",
     type: "Full Stack",
     year: "2026",
     tone: "acid",
@@ -57,6 +57,27 @@ const projects = [
     link: null,
     stack: ["PHP", "CodeIgniter 4", "MariaDB", "Transactional Email (SMTP)"],
     copy: "Portal for Indosat Ooredoo Hutchison Central Java featuring automated candidate tracking, CV screening, dynamic document generation, and seamless email and WhatsApp notifications.",
+  },
+  {
+    name: "Vrello Up",
+    type: "Full Stack",
+    year: "2026",
+    tone: "acid",
+    image: "/img/vrello-up.webp",
+    width: 1920,
+    height: 990,
+    link: null,
+    stack: [
+      "Next.js",
+      "Leaflet",
+      "Playwright",
+      "Zustand",
+      "React",
+      "Typescript",
+      "Node.js",
+      "Prisma",
+    ],
+    copy: "Enterprise workspace featuring drag-and-drop Kanban boards, campaign analytics, and offline-ready dual persistence, built for multi-tenant teams using Next.js 15, React 19, Zustand, and PostgreSQL.",
   },
   {
     name: "StealthForce E-commerce",

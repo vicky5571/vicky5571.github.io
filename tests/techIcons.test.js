@@ -24,6 +24,10 @@ const ALL_PROJECT_TAGS = [
   "Transactional Email (SMTP)",
   "Shadcn",
   "framer-motion",
+  "Node.js",
+  "Prisma",
+  "Leaflet",
+  "Playwright",
   "Figma",
   "Prototype",
   "User Research",
@@ -55,6 +59,10 @@ describe("Tech Stack Icon Mapping", () => {
     assert.equal(getTechIcon("laravel"), getTechIcon("Laravel"));
     assert.equal(getTechIcon("inertia.js v2"), getTechIcon("Inertia.js v2"));
     assert.equal(getTechIcon("mysql"), getTechIcon("MySQL"));
+    assert.equal(getTechIcon("node.js"), getTechIcon("Node.js"));
+    assert.equal(getTechIcon("prisma"), getTechIcon("Prisma"));
+    assert.equal(getTechIcon("leaflet"), getTechIcon("Leaflet"));
+    assert.equal(getTechIcon("playwright"), getTechIcon("Playwright"));
   });
 
   it("should return a fallback icon for unknown technologies", () => {
@@ -88,6 +96,10 @@ describe("Tech Stack Brand Color Mapping", () => {
     assert.equal(getTechBrandColor("MySQL").toLowerCase(), "#4479a1");
     assert.equal(getTechBrandColor("Transactional Email (SMTP)").toLowerCase(), "#38bdf8");
     assert.equal(getTechBrandColor("Shadcn").toLowerCase(), "#ffffff");
+    assert.equal(getTechBrandColor("Node.js").toLowerCase(), "#5fa04e");
+    assert.equal(getTechBrandColor("Prisma").toLowerCase(), "#16a394");
+    assert.equal(getTechBrandColor("Leaflet").toLowerCase(), "#79c02c");
+    assert.equal(getTechBrandColor("Playwright").toLowerCase(), "#45ba4b");
   });
 
   it("should return fallback theme color for unknown tags", () => {

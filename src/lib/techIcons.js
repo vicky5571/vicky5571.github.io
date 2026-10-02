@@ -31,6 +31,10 @@ import {
   IconBrandLaravel,
   IconBrandInertia,
   IconBrandMysql,
+  IconBrandNodejs,
+  IconBrandPrisma,
+  IconMapPin,
+  IconMasksTheater,
 } from "@tabler/icons-react";
 
 /**
@@ -71,6 +75,10 @@ const ICON_MAP = {
   sanity: IconDatabase,
   mariadb: IconDatabase,
   mysql: IconBrandMysql,
+  prisma: IconBrandPrisma,
+  "node.js": IconBrandNodejs,
+  nodejs: IconBrandNodejs,
+  node: IconBrandNodejs,
   "transactional email (smtp)": IconMail,
   "transactional email": IconMail,
   smtp: IconMail,
@@ -78,6 +86,10 @@ const ICON_MAP = {
   stripe: IconBrandStripe,
   clerk: IconShieldLock,
   zustand: IconCube,
+
+  // Geospatial & Testing
+  leaflet: IconMapPin,
+  playwright: IconMasksTheater,
 
   // UI/UX & Design Disciplines
   figma: IconBrandFigma,
@@ -130,6 +142,10 @@ const BRAND_COLOR_MAP = {
   sanity: "#f03e2f",
   mariadb: "#c0765a",
   mysql: "#4479a1",
+  prisma: "#16a394",
+  "node.js": "#5fa04e",
+  nodejs: "#5fa04e",
+  node: "#5fa04e",
   "transactional email (smtp)": "#38bdf8",
   "transactional email": "#38bdf8",
   smtp: "#38bdf8",
@@ -137,6 +153,10 @@ const BRAND_COLOR_MAP = {
   stripe: "#635bff",
   clerk: "#6c47ff",
   zustand: "#ea580c",
+
+  // Geospatial & Testing
+  leaflet: "#79c02c",
+  playwright: "#45ba4b",
 
   // UI/UX & Design Disciplines
   figma: "#f24e1e",
