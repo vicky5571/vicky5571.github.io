@@ -136,18 +136,6 @@ const projects = [
     copy: "Photography portfolio showcase crafted with custom Tailwind design tokens and fluid responsive typography.",
   },
   {
-    name: "SEO Project Tracker",
-    type: "Full Stack",
-    year: "2024",
-    tone: "acid",
-    image: "/img/seo-project-tracker.webp",
-    width: 1600,
-    height: 914,
-    link: "https://nextjs-seo-project-tracker.vercel.app/",
-    stack: ["Next.js", "Supabase", "Typescript"],
-    copy: "Keyword analytics dashboard with automated ranking tracking and real-time Supabase database sync.",
-  },
-  {
     name: "Tomato - Food Ordering",
     type: "UI/UX",
     year: "2024",
