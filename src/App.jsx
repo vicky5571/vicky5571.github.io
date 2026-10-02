@@ -112,6 +112,18 @@ const projects = [
     copy: "High-octane gaming landing experience engineered with fluid animation sequences and interactive micro-interactions.",
   },
   {
+    name: "Voney",
+    type: "Full Stack",
+    year: "2026",
+    tone: "acid",
+    image: "/img/voney.webp",
+    width: 1920,
+    height: 1080,
+    link: null,
+    stack: [],
+    copy: "Details coming soon.",
+  },
+  {
     name: "Dyno Graphy",
     type: "Front End",
     year: "2024",
