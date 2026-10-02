@@ -281,7 +281,7 @@ export function Lid({ scaleX, scaleY, rotate, translate, glowOpacity, src }) {
           src={src}
           alt="Macbook display preview"
           decoding="async"
-          className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top [transform:translateZ(0)]"
+          className="absolute inset-0 h-full w-full rounded-lg object-cover object-center [transform:translateZ(0)]"
         />
 
         {/* Gradual Screen Surface Edge Bloom & Inner Radiance */}
