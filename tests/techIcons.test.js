@@ -24,10 +24,14 @@ const ALL_PROJECT_TAGS = [
   "Transactional Email (SMTP)",
   "Shadcn",
   "framer-motion",
+  "Framer Motion",
   "Node.js",
   "Prisma",
   "Leaflet",
   "Playwright",
+  "Zod",
+  "Drizzle ORM",
+  "Capacitor",
   "Figma",
   "Prototype",
   "User Research",
@@ -100,6 +104,9 @@ describe("Tech Stack Brand Color Mapping", () => {
     assert.equal(getTechBrandColor("Prisma").toLowerCase(), "#16a394");
     assert.equal(getTechBrandColor("Leaflet").toLowerCase(), "#79c02c");
     assert.equal(getTechBrandColor("Playwright").toLowerCase(), "#45ba4b");
+    assert.equal(getTechBrandColor("Zod").toLowerCase(), "#3068b7");
+    assert.equal(getTechBrandColor("Drizzle ORM").toLowerCase(), "#c5f74f");
+    assert.equal(getTechBrandColor("Capacitor").toLowerCase(), "#119eff");
   });
 
   it("should return fallback theme color for unknown tags", () => {

@@ -18,6 +18,8 @@ import {
   IconBrandSupabase,
   IconBrandFigma,
   IconDeviceMobile,
+  IconShieldCheck,
+  IconDroplets,
   IconUserSearch,
   IconLayout,
   IconComponents,
@@ -91,6 +93,12 @@ const ICON_MAP = {
   leaflet: IconMapPin,
   playwright: IconMasksTheater,
 
+  // Mobile, Type Safety & Modern Data
+  zod: IconShieldCheck,
+  "drizzle orm": IconDroplets,
+  drizzle: IconDroplets,
+  capacitor: IconDeviceMobile,
+
   // UI/UX & Design Disciplines
   figma: IconBrandFigma,
   prototype: IconDeviceMobile,
@@ -157,6 +165,12 @@ const BRAND_COLOR_MAP = {
   // Geospatial & Testing
   leaflet: "#79c02c",
   playwright: "#45ba4b",
+
+  // Mobile, Type Safety & Modern Data
+  zod: "#3068b7",
+  "drizzle orm": "#c5f74f",
+  drizzle: "#c5f74f",
+  capacitor: "#119eff",
 
   // UI/UX & Design Disciplines
   figma: "#f24e1e",
