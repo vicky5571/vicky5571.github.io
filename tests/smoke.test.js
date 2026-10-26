@@ -71,8 +71,16 @@ describe("Smoke & Unit Test Suite — Portfolio Core", () => {
         width: 3360,
         height: 2100,
         link: null,
-        stack: ["Laravel", "React", "Typescript", "MySQL", "Tailwind"],
-        copy: "Internal web-based inventory and supply chain tracking system.",
+        stack: [
+          "Next.js",
+          "React",
+          "Typescript",
+          "Tailwind",
+          "Supabase",
+          "SQLite",
+          "Chart.js",
+        ],
+        copy: "Production-grade timber and lumber inventory management platform.",
       };
       assert.equal(isValidProject(woodInventoryProject), true);
     });

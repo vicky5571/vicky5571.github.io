@@ -37,6 +37,7 @@ import {
   IconBrandPrisma,
   IconMapPin,
   IconMasksTheater,
+  IconChartBar,
 } from "@tabler/icons-react";
 
 /**
@@ -77,6 +78,7 @@ const ICON_MAP = {
   sanity: IconDatabase,
   mariadb: IconDatabase,
   mysql: IconBrandMysql,
+  sqlite: IconDatabase,
   prisma: IconBrandPrisma,
   "node.js": IconBrandNodejs,
   nodejs: IconBrandNodejs,
@@ -89,9 +91,11 @@ const ICON_MAP = {
   clerk: IconShieldLock,
   zustand: IconCube,
 
-  // Geospatial & Testing
+  // Geospatial, Testing & Analytics
   leaflet: IconMapPin,
   playwright: IconMasksTheater,
+  "chart.js": IconChartBar,
+  chartjs: IconChartBar,
 
   // Mobile, Type Safety & Modern Data
   zod: IconShieldCheck,
@@ -150,6 +154,7 @@ const BRAND_COLOR_MAP = {
   sanity: "#f03e2f",
   mariadb: "#c0765a",
   mysql: "#4479a1",
+  sqlite: "#0f80cc",
   prisma: "#16a394",
   "node.js": "#5fa04e",
   nodejs: "#5fa04e",
@@ -162,9 +167,11 @@ const BRAND_COLOR_MAP = {
   clerk: "#6c47ff",
   zustand: "#ea580c",
 
-  // Geospatial & Testing
+  // Geospatial, Testing & Analytics
   leaflet: "#79c02c",
   playwright: "#45ba4b",
+  "chart.js": "#ff6384",
+  chartjs: "#ff6384",
 
   // Mobile, Type Safety & Modern Data
   zod: "#3068b7",

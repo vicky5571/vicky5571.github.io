@@ -89,13 +89,15 @@ const projects = [
     height: 2100,
     link: null,
     stack: [
-      "Laravel",
+      "Next.js",
       "React",
       "Typescript",
-      "MySQL",
       "Tailwind",
+      "Supabase",
+      "SQLite",
+      "Chart.js",
     ],
-    copy: "Internal web-based inventory and supply chain tracking system engineered for wood manufacturing, featuring real-time stock monitoring, automated log auditing, and throughput analytics.",
+    copy: "Production-grade timber and lumber inventory management platform engineered for log yard operations with Perhutani contract tracking, discrepancy alarms, and dual-mode SQLite and Supabase persistence.",
   },
   {
     name: "StealthForce E-commerce",

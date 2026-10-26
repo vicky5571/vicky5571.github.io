@@ -21,6 +21,8 @@ const ALL_PROJECT_TAGS = [
   "CodeIgniter 4",
   "MariaDB",
   "MySQL",
+  "SQLite",
+  "Chart.js",
   "Transactional Email (SMTP)",
   "Shadcn",
   "framer-motion",
@@ -67,6 +69,8 @@ describe("Tech Stack Icon Mapping", () => {
     assert.equal(getTechIcon("prisma"), getTechIcon("Prisma"));
     assert.equal(getTechIcon("leaflet"), getTechIcon("Leaflet"));
     assert.equal(getTechIcon("playwright"), getTechIcon("Playwright"));
+    assert.equal(getTechIcon("sqlite"), getTechIcon("SQLite"));
+    assert.equal(getTechIcon("chart.js"), getTechIcon("Chart.js"));
   });
 
   it("should return a fallback icon for unknown technologies", () => {
@@ -107,6 +111,8 @@ describe("Tech Stack Brand Color Mapping", () => {
     assert.equal(getTechBrandColor("Zod").toLowerCase(), "#3068b7");
     assert.equal(getTechBrandColor("Drizzle ORM").toLowerCase(), "#c5f74f");
     assert.equal(getTechBrandColor("Capacitor").toLowerCase(), "#119eff");
+    assert.equal(getTechBrandColor("SQLite").toLowerCase(), "#0f80cc");
+    assert.equal(getTechBrandColor("Chart.js").toLowerCase(), "#ff6384");
   });
 
   it("should return fallback theme color for unknown tags", () => {
