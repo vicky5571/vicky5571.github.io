@@ -80,6 +80,24 @@ const projects = [
     copy: "Enterprise workspace featuring drag-and-drop Kanban boards, campaign analytics, and offline-ready dual persistence, built for multi-tenant teams using Next.js 15, React 19, Zustand, and PostgreSQL.",
   },
   {
+    name: "Wood Inventory",
+    type: "Full Stack",
+    year: "2026",
+    tone: "acid",
+    image: "/img/wood-inventory.webp",
+    width: 3360,
+    height: 2100,
+    link: null,
+    stack: [
+      "Laravel",
+      "React",
+      "Typescript",
+      "MySQL",
+      "Tailwind",
+    ],
+    copy: "Internal web-based inventory and supply chain tracking system engineered for wood manufacturing, featuring real-time stock monitoring, automated log auditing, and throughput analytics.",
+  },
+  {
     name: "StealthForce E-commerce",
     type: "Full Stack",
     year: "2025",
@@ -189,6 +207,12 @@ const expCategories = [
 ];
 
 const methods = [
+  [
+    "2026",
+    "Full Stack Web Developer\nPT Brilliant Jaya Wood Industry",
+    "Architected and developed internal inventory management systems, production tracking workflows, and operational database solutions.",
+    "Tech & Dev",
+  ],
   [
     "2026",
     "IT Capability Building\nPT Indosat Tbk",
@@ -705,7 +729,7 @@ function Work() {
                       ][index % 7]
                         }`}
                     >
-                      0{index + 1}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
 

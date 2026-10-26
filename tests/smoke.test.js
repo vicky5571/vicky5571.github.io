@@ -61,6 +61,20 @@ describe("Smoke & Unit Test Suite — Portfolio Core", () => {
         copy: "Full-stack headless commerce platform.",
       };
       assert.equal(isValidProject(sampleProject), true);
+
+      const woodInventoryProject = {
+        name: "Wood Inventory",
+        type: "Full Stack",
+        year: "2026",
+        tone: "acid",
+        image: "/img/wood-inventory.webp",
+        width: 3360,
+        height: 2100,
+        link: null,
+        stack: ["Laravel", "React", "Typescript", "MySQL", "Tailwind"],
+        copy: "Internal web-based inventory and supply chain tracking system.",
+      };
+      assert.equal(isValidProject(woodInventoryProject), true);
     });
 
     it("should reject an invalid Project object missing required fields", () => {
@@ -77,6 +91,14 @@ describe("Smoke & Unit Test Suite — Portfolio Core", () => {
         "Corporate & IT",
       ];
       assert.equal(isValidExperienceItem(sampleExperience), true);
+
+      const woodExperience = [
+        "2026",
+        "Full Stack Web Developer\nPT Brilliant Jaya Wood Industry",
+        "Architected and developed internal inventory management systems, production tracking workflows, and operational database solutions.",
+        "Tech & Dev",
+      ];
+      assert.equal(isValidExperienceItem(woodExperience), true);
     });
 
     it("should reject an invalid Experience item tuple", () => {
